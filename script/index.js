@@ -30,6 +30,7 @@ function filterPork(dishes) {
 }
 
 // This displays the foods by inserting HTML to the index.html
+
 const displayFoods = function (foods) {
   foods.forEach((food, i) => {
     const html = `<div>Test ${food.name}</div>`;
@@ -66,13 +67,6 @@ async function getMenu() {
   const fishDishes = filterFish(menuData);
   const porkDishes = filterPork(menuData);
 
-  // console.log("Vegetarian Dishes:", vegetarianDishes);
-  // console.log("Gluten-Free Dishes:", glutenFreeDishes);
-  // console.log("Lactose-Free Dishes:", lactoseFreeDishes);
-  // console.log("Beef Dishes:", beefDishes);
-  // console.log("Chicken Dishes:", chickenDishes);
-  // console.log("Fish Dishes:", fishDishes);
-  // console.log("Pork Dishes:", porkDishes);
   displayFoods(menuData);
 }
 
