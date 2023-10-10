@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title class="title">Hem</title>
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -13,7 +13,7 @@
         <div class="header">
             <img src="./pictures/lucky_duck.png" alt="logo">
             
-            <h1>Lucky Duck Cafe & Bar</h1>
+            <h1 id="mainTitle">Lucky Duck Cafe & Bar</h1>
 
             <img src="./pictures/lucky_duck.png" alt="logo">
         </div>
@@ -23,7 +23,7 @@
     <section>
         <div class="menuBox">
             <div class="menuHeader">
-                <h2>Menu</h2>
+                <h2 id="menuTitle">Meny</h2>
             </div>
             <div class="menuList">
 
@@ -37,41 +37,41 @@
         <section>
             <div id="mainHeader">
                 <div>
-                    <h3 id="mainFilters">Filters</h3>
+                    <h3 id="mainFilters">Filter</h3>
 
                     <!-- Eventuel box that pops up when pressing filter -->
                     <div id="filterContainer">
                         <div>
-                            <h2>Meat Dishes</h2>
+                            <h2 id="titleKötträtter">Kötträtter</h2>
                             <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
-                            <label for="vegetarian">Vegetarian</label>
+                            <label for="vegetarian" id="labelVegetarian">Vegetarisk</label>
                             <input type="checkbox" id="chicken" name="chicken" value="Chicken">
-                            <label for="chicken">Chicken</label>
+                            <label for="chicken" id="labelChicken">Kyckling</label>
                             <input type="checkbox" id="pork" name="pork" value="Pork">
-                            <label for="pork">Pork</label>
+                            <label for="pork" id="labelPork">Fläsk</label>
                             <input type="checkbox" id="groundBeef" name="groundBeef" value="GroundBeef">
-                            <label for="groundBeef">Ground Beef</label>
+                            <label for="groundBeef" id="labelGroundBeef">Nöt</label>
                             <input type="checkbox" id="fish" name="fish" value="Fish">
-                            <label for="fish">Fish</label>
+                            <label for="fish" id="labelFish">Fisk</label>
                         </div>
                         <div>
-                            <h2>Allergies</h2>
-                            <input type="checkbox">
-                            <label for="">Gluten Free</label>
-                            <input type="checkbox">
-                            <label for="">Lactose Free</label>
+                            <h2>Allergier</h2>
+                            <input type="checkbox" id="glutenFree" name="glutenFree" value="GlutenFree">
+                            <label for="lactoseFree" id="labelLactoseFree">Glutenfri</label>
+                            <input type="checkbox" id="lactoseFree" name="lactoseFree" value="LactoseFree">
+                            <label for="lactoseFree" id="labelLactoseFree">Laktosfri</label>
                         </div>
                     </div>
 
                 </div>
                 <div>
-                    <h3 id="mainName">Name + Price</h3>
+                    <h3 id="mainName">Namn + Pris</h3>
                 </div>
                 <!-- Language selector -->
                 <div id="mainLanguage">
                     <select name="language" id="language">
-                        <option value="en">English</option>
                         <option value="sv">Svenska</option>
+                        <option value="en">English</option>
                     </select>
                 </div>
             </div>
