@@ -95,8 +95,10 @@
     
     <!-- Automatic year updating in the variable currentYear -->
     <script>
-        let currentYear = new Date().getFullYear();
-        $("#currentYear").text(currentYear);
+        $(document).ready(function() {
+            var currentYear = new Date().getFullYear();
+            $("#currentYear").text(currentYear);
+        });
     </script>
     
     <script src="./script/index.js"></script>
