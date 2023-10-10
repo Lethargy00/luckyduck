@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <!-- Header with logo -->
+    <header>
+        <div class="header">
+            <img src="./pictures/lucky_duck.png" alt="logo">
+            
+            <h1>Lucky Duck Cafe & Bar</h1>
+
+            <img src="./pictures/lucky_duck.png" alt="logo">
+        </div>
+    </header>
+
+    <!-- Vertical Menu Part -->
+    <section>
+        <div class="menuBox">
+            <div class="menuHeader">
+                <h2>Menu</h2>
+            </div>
+            <div class="menuList">
+
+            </div>
+        </div>
+    </section>
+
+    <main>
+
+        <!-- Horizontal main Header -->
+        <section>
+            <div id="mainHeader">
+                <div>
+                    <h3 id="mainFilters">Filters</h3>
+
+                    <!-- Eventuel box that pops up when pressing filter -->
+                    <div id="filterContainer">
+                        <div>
+                            <h2>Meat Dishes</h2>
+                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
+                            <label for="vegetarian">Vegetarian</label>
+                            <input type="checkbox" id="chicken" name="chicken" value="Chicken">
+                            <label for="chicken">Chicken</label>
+                            <input type="checkbox" id="pork" name="pork" value="Pork">
+                            <label for="pork">Pork</label>
+                            <input type="checkbox" id="groundBeef" name="groundBeef" value="GroundBeef">
+                            <label for="groundBeef">Ground Beef</label>
+                            <input type="checkbox" id="fish" name="fish" value="Fish">
+                            <label for="fish">Fish</label>
+                        </div>
+                        <div>
+                            <h2>Allergies</h2>
+                            <input type="checkbox">
+                            <label for="">Gluten Free</label>
+                            <input type="checkbox">
+                            <label for="">Lactose Free</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <h3 id="mainName">Name + Price</h3>
+                </div>
+                <!-- Language selector -->
+                <div id="mainLanguage">
+                    <select name="language" id="language">
+                        <option value="en">English</option>
+                        <option value="sv">Svenska</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main content window for food -->
+        <section>
+            <div id="mainFood">
+
+            </div>
+        </section>
+
+        <!-- Footer with logo -->
+        <footer>
+            <div id="footer">
+                <img src="./pictures/lucky_duck.png" alt="logo">
+                <p id="copyright">Copyright © <span id="currentYear"></span> Lucky Duck ®</p>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Automatic year updating in the variable currentYear -->
+    <script>
+        $(document).ready(function() {
+            var currentYear = new Date().getFullYear();
+            $("#currentYear").text(currentYear);
+        });
+    </script>
+    
+    <script src="./script/index.js"></script>
+    <script src="./script/translate.js"></script>
+</body>
+</html>
