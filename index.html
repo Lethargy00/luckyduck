@@ -33,6 +33,8 @@
             <!-- Filtering option -->
             <h2 id="mainFilters">Filter</h2>
             <div id="filterContainer">
+
+                <!-- Filter meat options -->
                 <div>
                     <h2 id="titleKötträtter">Kötträtter</h2>
                     <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
@@ -46,6 +48,8 @@
                     <input type="checkbox" id="fish" name="fish" value="Fish">
                     <label for="fish" id="labelFish">Fisk</label>
                 </div>
+
+                <!-- Filter allergies -->
                 <div>
                     <h2 id="titleAllergies">Allergier</h2>
                     <input type="checkbox" id="glutenFree" name="glutenFree" value="GlutenFree">
@@ -53,7 +57,18 @@
                     <input type="checkbox" id="lactoseFree" name="lactoseFree" value="LactoseFree">
                     <label for="lactoseFree" id="labelLactoseFree">Laktosfri</label>
                 </div>
+                
+                <!-- Sorting pricing from ascending, descending and standard -->
+                <div>
+                    <h2 id="titlePriceSort">Pris sortering</h2>
+                    <select name="priceSort" id="priceSort">
+                        <option id="optionStandard" value="standard">Standard</option>
+                        <option id="optionAscending" value="ascending">Stigande</option>
+                        <option id="optionDescending" value="descending">Fallande</option>
+                    </select>
+                </div>
             </div>
+
             <!-- Order List -->
             <h2 id="menuTitle">Meny</h2>
             <div class="menuList">
