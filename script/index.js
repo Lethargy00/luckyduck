@@ -9,19 +9,34 @@ const checkFish = document.querySelector("input[name=fish]");
 const languageSelect = document.querySelector("#language");
 const swedishOption = document.querySelector("#language option[value='sv']");
 const englishOption = document.querySelector("#language option[value='en']");
+const priceSort = document.querySelector("#priceSort");
+const optionStandard = document.querySelector(
+  "#priceSort option[value='standard']"
+);
+const optionAscending = document.querySelector(
+  "#priceSort option[value='ascending']"
+);
+const optionDescending = document.querySelector(
+  "#priceSort option[value='descending']"
+);
 
 let language = true;
+let selectedSort = "standard";
 let menu = [];
 
 // This displays the foods by inserting HTML to the index.html
 
 const displayFoods = function (foods) {
   foodDiv.innerHTML = "";
-  const nameProperty = language ? "seName" : "enName";
-  const descriptionProperty = language ? "seDescription" : "enDescription";
+  const nameLanguage = language ? "seName" : "enName";
+  const descriptionLanguage = language ? "seDescription" : "enDescription";
 
-  foods.forEach((food) => {
-    const html = `<div><p class="food-title">${food[nameProperty]}</p><p class="food-price">${food.price} kr</p><p class="food-description">${food[descriptionProperty]}</p></div>`;
+  const sortedFoods = sortFoodByPrice(foods);
+
+  sortedFoods.forEach((food) => {
+    const html = `<div><p class="food-title">${food[nameLanguage]}</p>
+    <p class="food-price">${food.price} kr</p>
+    <p class="food-description">${food[descriptionLanguage]}</p></div>`;
 
     foodDiv.insertAdjacentHTML("beforeend", html);
   });
@@ -42,10 +57,8 @@ async function fetchMenuData() {
   }
 }
 
-// Example usage to fetch and filter menu data
 async function getMenu() {
   menu = await fetchMenuData();
-  filteredMenu = [...menu];
   displayFoods(menu);
 }
 
@@ -63,6 +76,10 @@ const filterFoods = function () {
     filteredMenu = filteredMenu.filter((food) => food.isLactoseFree);
   }
   if (checkVegetarian.checked) {
+    checkBeef.checked = false;
+    checkPork.checked = false;
+    checkChicken.checked = false;
+    checkFish.checked = false;
     filteredMenu = filteredMenu.filter((food) => food.isVegetarian);
   }
   if (checkBeef.checked) {
@@ -90,7 +107,17 @@ const filterFoods = function () {
   displayFoods(filteredMenu);
 };
 
-// Event listeners
+const sortFoodByPrice = function (filteredMenu) {
+  if (selectedSort === "standard") {
+    return filteredMenu;
+  } else if (selectedSort === "ascending") {
+    return filteredMenu.slice().sort((a, b) => a.price - b.price);
+  } else if (selectedSort === "descending") {
+    return filteredMenu.slice().sort((a, b) => b.price - a.price);
+  }
+};
+
+// Event listeners - calls filterFoods to update the list of foods
 checkGlutenFree.addEventListener("change", filterFoods);
 checkLactoseFree.addEventListener("change", filterFoods);
 checkVegetarian.addEventListener("change", filterFoods);
@@ -102,7 +129,7 @@ checkFish.addEventListener("change", filterFoods);
 languageSelect.addEventListener("change", function () {
   const selectedLanguage = languageSelect.value;
 
-  // Use selectedLanguage to determine the user's language choice
+  // Use selectedLanguage to determine the user's language choice, Swedish is default
   if (selectedLanguage === "sv") {
     language = true;
   } else if (selectedLanguage === "en") {
@@ -110,4 +137,11 @@ languageSelect.addEventListener("change", function () {
   }
 
   displayFoods(filteredMenu);
+});
+
+// Changes the value of sorting and calls the filter to update the list of foods
+
+priceSort.addEventListener("change", function () {
+  selectedSort = priceSort.value;
+  filterFoods();
 });
