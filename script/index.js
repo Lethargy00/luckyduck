@@ -136,7 +136,7 @@ languageSelect.addEventListener("change", function () {
     language = false;
   }
 
-  displayFoods(filteredMenu);
+  filterFoods();
 });
 
 // Changes the value of sorting and calls the filter to update the list of foods
