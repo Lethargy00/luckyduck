@@ -19,6 +19,11 @@ const optionAscending = document.querySelector(
 const optionDescending = document.querySelector(
   "#priceSort option[value='descending']"
 );
+// SVG for portion sizes
+const smallPortionSvg =
+  '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>';
+const largePortionSvg =
+  '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>';
 
 let language = true;
 let selectedSort = "standard";
@@ -32,10 +37,16 @@ const displayFoods = function (foods) {
   const descriptionLanguage = language ? "seDescription" : "enDescription";
 
   const sortedFoods = sortFoodByPrice(foods);
-
   sortedFoods.forEach((food) => {
+    let priceHtml = "";
+
+    if (Array.isArray(food.price)) {
+      priceHtml = `<p class="food-price">${smallPortionSvg} ${food.price[0]} kr</p><p>${largePortionSvg} ${food.price[1]} kr</p>`;
+    } else {
+      priceHtml = `<p class="food-price">${largePortionSvg} ${food.price} kr</p>`;
+    }
     const html = `<div><p class="food-title">${food[nameLanguage]}</p>
-    <p class="food-price">${food.price} kr</p>
+    ${priceHtml}
     <p class="food-description">${food[descriptionLanguage]}</p></div>`;
 
     foodDiv.insertAdjacentHTML("beforeend", html);

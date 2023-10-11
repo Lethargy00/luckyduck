@@ -68,7 +68,7 @@
   {
     "seName": "Caesarsallad",
     "enName": "Caesar Salad",
-    "price": 139,
+    "price": [85, 139],
     "typeOfMeat": ["Chicken", "Pork"],
     "isVegetarian": false,
     "isGlutenFree": false,
@@ -101,7 +101,7 @@
   {
     "seName": "Musslor Cava",
     "enName": "Mussles Ál Cava",
-    "price": 189,
+    "price": [109, 189],
     "typeOfMeat": ["Fish"],
     "isVegetarian": false,
     "isGlutenFree": true,
