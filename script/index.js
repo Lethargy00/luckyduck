@@ -21,16 +21,16 @@ const optionDescending = document.querySelector(
 );
 // SVG for portion sizes
 const smallPortionSvg =
-  '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>';
+  '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>';
 const largePortionSvg =
-  '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>';
+  '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>';
 
+//Setting default values
 let language = true;
 let selectedSort = "standard";
 let menu = [];
 
 // This displays the foods by inserting HTML to the index.html
-
 const displayFoods = function (foods) {
   foodDiv.innerHTML = "";
   const nameLanguage = language ? "seName" : "enName";
@@ -76,6 +76,7 @@ async function getMenu() {
 // Call the getMenu function to fetch and work with menu data
 getMenu();
 
+// Filters the food items basen on checkboxes ticked
 const filterFoods = function () {
   // Reset the filteredMenu to the original menu data
   filteredMenu = [...menu];
@@ -118,13 +119,14 @@ const filterFoods = function () {
   displayFoods(filteredMenu);
 };
 
+// Sorts by pice
 const sortFoodByPrice = function (filteredMenu) {
   if (selectedSort === "standard") {
     return filteredMenu;
   } else if (selectedSort === "ascending") {
-    return filteredMenu.slice().sort((a, b) => a.price[0] - b.price[0]);
+    return filteredMenu.sort((a, b) => a.price[0] - b.price[0]);
   } else if (selectedSort === "descending") {
-    return filteredMenu.slice().sort((a, b) => b.price[0] - a.price[0]);
+    return filteredMenu.sort((a, b) => b.price[0] - a.price[0]);
   }
 };
 
@@ -140,7 +142,7 @@ checkFish.addEventListener("change", filterFoods);
 languageSelect.addEventListener("change", function () {
   const selectedLanguage = languageSelect.value;
 
-  // Use selectedLanguage to determine the user's language choice, Swedish is default
+  // Determine the user's language choice, Swedish is default
   if (selectedLanguage === "sv") {
     language = true;
   } else if (selectedLanguage === "en") {
@@ -151,7 +153,6 @@ languageSelect.addEventListener("change", function () {
 });
 
 // Changes the value of sorting and calls the filter to update the list of foods
-
 priceSort.addEventListener("change", function () {
   selectedSort = priceSort.value;
   filterFoods();
