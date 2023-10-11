@@ -40,10 +40,10 @@ const displayFoods = function (foods) {
   sortedFoods.forEach((food) => {
     let priceHtml = "";
 
-    if (Array.isArray(food.price)) {
+    if (food.price.length > 1) {
       priceHtml = `<p class="food-price">${smallPortionSvg} ${food.price[0]} kr</p><p>${largePortionSvg} ${food.price[1]} kr</p>`;
     } else {
-      priceHtml = `<p class="food-price">${largePortionSvg} ${food.price} kr</p>`;
+      priceHtml = `<p class="food-price">${largePortionSvg} ${food.price[0]} kr</p>`;
     }
     const html = `<div><p class="food-title">${food[nameLanguage]}</p>
     ${priceHtml}
@@ -122,9 +122,9 @@ const sortFoodByPrice = function (filteredMenu) {
   if (selectedSort === "standard") {
     return filteredMenu;
   } else if (selectedSort === "ascending") {
-    return filteredMenu.slice().sort((a, b) => a.price - b.price);
+    return filteredMenu.slice().sort((a, b) => a.price[0] - b.price[0]);
   } else if (selectedSort === "descending") {
-    return filteredMenu.slice().sort((a, b) => b.price - a.price);
+    return filteredMenu.slice().sort((a, b) => b.price[0] - a.price[0]);
   }
 };
 

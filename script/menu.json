@@ -2,7 +2,7 @@
   {
     "seName": "Fläskfileplanka",
     "enName": "Pork Tenderloin Plank Steak",
-    "price": 149,
+    "price": [149],
     "typeOfMeat": ["Pork"],
     "isVegetarian": false,
     "isGlutenFree": true,
@@ -13,7 +13,7 @@
   {
     "seName": "Biff Rydberg",
     "enName": "Biff Rydberg",
-    "price": 175,
+    "price": [175],
     "typeOfMeat": ["Beef"],
     "isVegetarian": false,
     "isGlutenFree": true,
@@ -24,7 +24,7 @@
   {
     "seName": "Spicy Cheeseburger",
     "enName": "Spicy Cheeseburger",
-    "price": 155,
+    "price": [155],
     "typeOfMeat": ["Beef"],
     "isVegetarian": false,
     "isGlutenFree": false,
@@ -35,7 +35,7 @@
   {
     "seName": "Halloumi Burgare",
     "enName": "Halloumi Burger",
-    "price": 155,
+    "price": [155],
     "typeOfMeat": ["Vegetarian"],
     "isVegetarian": true,
     "isGlutenFree": false,
@@ -46,7 +46,7 @@
   {
     "seName": "Fish'n Chips",
     "enName": "Fish'n Chips",
-    "price": 149,
+    "price": [149],
     "typeOfMeat": ["Fish"],
     "isVegetarian": false,
     "isGlutenFree": false,
@@ -57,7 +57,7 @@
   {
     "seName": "Husets Schnitzel",
     "enName": "Schnitzel",
-    "price": 175,
+    "price": [175],
     "typeOfMeat": ["Pork"],
     "isVegetarian": false,
     "isGlutenFree": false,
@@ -79,7 +79,7 @@
   {
     "seName": "Laxsallad med Quinoa",
     "enName": "Salmonsalad with Quinoa",
-    "price": 159,
+    "price": [159],
     "typeOfMeat": ["Fish"],
     "isVegetarian": false,
     "isGlutenFree": true,
@@ -90,7 +90,7 @@
   {
     "seName": "Krämig Kycklingpasta",
     "enName": "Creamy Chickenpasta",
-    "price": 169,
+    "price": [169],
     "typeOfMeat": ["Chicken"],
     "isVegetarian": false,
     "isGlutenFree": false,
@@ -112,7 +112,7 @@
   {
     "seName": "Grillad Oxfile",
     "enName": "Grilled Beef Tenderloin",
-    "price": 259,
+    "price": [259],
     "typeOfMeat": ["Beef"],
     "isVegetarian": false,
     "isGlutenFree": true,
