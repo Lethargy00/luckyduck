@@ -73,7 +73,7 @@
     "isVegetarian": false,
     "isGlutenFree": false,
     "isLactoseFree": false,
-    "seDescription": "Varm kyckling, bacon, krutonger, parmesan samt caesardressing CAESAR SALAD",
+    "seDescription": "Varm kyckling, bacon, krutonger, parmesan samt caesardressing",
     "enDescription": "Grilled chicken, bacon, croutons, parmesan and caesardressing"
   },
   {
@@ -94,7 +94,7 @@
     "typeOfMeat": ["Chicken"],
     "isVegetarian": false,
     "isGlutenFree": false,
-    "isLactoseFree": false,
+    "isLactoseFree": true,
     "seDescription": "Soltorkade tomater, basilika, grönsaker och parmesan",
     "enDescription": "Sundried tomatoes, basil, vegetables and parmesan"
   },
