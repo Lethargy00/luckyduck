@@ -23,11 +23,19 @@
         <div class="menuBox">
 
             <!-- Language Selector -->
+            <button id="languageButton">Language</button>
             <div id="mainLanguage">
-                <select name="language" id="language">
-                    <option value="sv">Svenska</option>
-                    <option value="en">English</option>
-                </select>
+                <div>
+                    <div class="languageBox">
+                        <label for="swedish" id="labelSwedish">Svenska</label>
+                        <input type="radio" id="swedish" name="language" checked>
+                    </div>
+                    <div class="languageBox">
+                        <label for="english" id="labelEnglish">English</label>
+                        <input type="radio" id="english" name="language">
+                    </div>
+                </div>
+
             </div>
 
             <!-- Filtering option -->
