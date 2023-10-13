@@ -15,7 +15,7 @@ function translateSelectionOptions(selectId, translatedElements) {
   const options = selectElement.getElementsByTagName("option");
 
   for (let i = 0; i < options.length; i++) { //loopar igenom varje option element inuti options variabeln
-    const optionId = options[i].id; 
+    const optionId = options[i].id;
     const translation = translatedElements[optionId];
 
     if (translation) {
@@ -44,7 +44,8 @@ function changeLanguageToEnglish() {
     element.textContent = element.getAttribute('data-en');
   });
 
-
+  //Sparar det valda språket
+  localStorage.setItem("selectedLanguage", "en");
 }
 
 
@@ -76,9 +77,9 @@ function changeLanguage() {
   if (translatedElements) {
 
     const elementsToTranslate = document.querySelectorAll('h2, label, select, p, [id]:not(#swedish):not(#english)'); //Översätter element med tag och element utan id
-    
+
     elementsToTranslate.forEach(element => translateElement(element, translatedElements));
-    
+
 
     translateSelectionOptions("priceSort", translatedElements);
   }
@@ -94,14 +95,14 @@ const languageRadios = document.querySelectorAll('input[name="language"]');
 languageRadios.forEach(radio => {
   radio.addEventListener("change", changeLanguage);
 
-const languageRadios = document.querySelectorAll('input[name="language"]');
-languageRadios.forEach(radio => {
-  radio.addEventListener("change", function() {
+  const languageRadios = document.querySelectorAll('input[name="language"]');
+  languageRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
 
-    language = this.value === "en" ? false : true; //Om det användaren valt är "en" blir det true annars false
-    filterFoods();
+      language = this.value === "en" ? false : true; //Om det användaren valt är "en" blir det true annars false
+      filterFoods();
+    });
   });
-});
 
 
 });
