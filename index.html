@@ -78,19 +78,20 @@
 
             <!-- Order List -->
             <button data-se="Beställning" data-en="Your order" id="orderTitle">Beställning</button>
+            <div id="orderContainer">
+                <!-- List of products you ordered -->
+                <div class="orderList">
+                        
+                </div>
 
-            <!-- List of products you ordered -->
-            <div class="orderList">
-                    
+                <!-- Here comes the price summary of the order -->
+                <div class="orderSummary">
+
+                </div>
+
+                <!-- Button to pay but without funktion -->
+                <button data-se="Beställ" data-en="Order" id="orderButton">Beställ</button>
             </div>
-
-            <!-- Here comes the price summary of the order -->
-            <div class="orderSummary">
-
-            </div>
-
-            <!-- Button to pay but without funktion -->
-            <button data-se="Beställ" data-en="Order" id="orderButton">Beställ</button>
         </div>
     </section>
 
@@ -110,12 +111,70 @@
         </footer>
     </main>
     
-    <!-- Automatic year updating in the variable currentYear -->
+    
     <script>
+        // Automatic year updating in the variable currentYear
         $(document).ready(function() {
+            
             var currentYear = new Date().getFullYear();
+
             $("#currentYear").text(currentYear);
+
         });
+
+        // If filter and language isn't open, show orderContainer
+        function toggleContainers() {
+
+            const languageVisible = $("#mainLanguage").hasClass("show")
+            const filterVisible = $("#filterContainer").hasClass("show")
+
+            if (!languageVisible && !filterVisible) {
+
+                $("#orderContainer").removeClass("hide");
+
+            } else {
+
+                $("#orderContainer").addClass("hide");
+
+            }
+
+        }
+
+        // Toggle Language
+        $("#languageButton").click(function() {
+
+            $("#mainLanguage").toggleClass("show");
+
+            $("#filterContainer").removeClass("show");
+
+            toggleContainers();
+
+        });
+
+        // Toggle Filters
+        $("#mainFilters").click(function() {
+
+            $("#mainLanguage").removeClass("show");
+
+            $("#filterContainer").toggleClass("show");
+
+            toggleContainers();
+
+        });
+
+        // Makes order visible
+        $("#orderTitle").click(function () {
+
+            $("#mainLanguage").removeClass("show");
+
+            $("#filterContainer").removeClass("show");
+
+            $("#orderContainer").removeClass("hide");
+
+            toggleContainers();
+
+        });
+
     </script>
     
     <script src="./script/index.js"></script>
