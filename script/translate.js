@@ -1,40 +1,3 @@
-var translations = {
-  sv: {
-    menuTitle: "Meny",
-    mainFilters: "Filter",
-    mainName: "Namn + Pris",
-    titleKötträtter: "Kottratter",
-    labelVegetarian: "Vegetarisk",
-    labelChicken: "Kyckling",
-    labelPork: "Fläsk",
-    labelGroundBeef: "Nöt",
-    labelFish: "Fisk",
-    titleAllergies: "Allergier",
-    labelGlutenFree: "Glutenfri",
-    labelLactoseFree: "Laktosfri",
-    titlePriceSort: "Pris sortering",
-    optionAscending: "Stigande",
-    optionDescending: "Fallande",
-  },
-  en: {
-    menuTitle: "Menu",
-    mainFilters: "Filters",
-    mainName: "Name + Price",
-    titleKötträtter: "Meat dish",
-    labelVegetarian: "Vegetarian",
-    labelChicken: "Chicken",
-    labelPork: "Pork",
-    labelGroundBeef: "Beef",
-    labelFish: "Fish",
-    titleAllergies: "Allergies",
-    labelGlutenFree: "Gluten free",
-    labelLactoseFree: "Lactose free",
-    titlePriceSort: "Price sorting",
-    optionAscending: "Ascending",
-    optionDescending: "Descending",
-  },
-};
-
 function translateElement(element, translatedElements) {
   const elementId = element.id;
   const translation = translatedElements[elementId];
@@ -56,35 +19,75 @@ function translateSelectionOptions(selectId, translatedElements) {
     }
   }
 }
+function changeLanguageToSwedish() {
+  const elementsToTranslate = document.querySelectorAll('[data-se]');
+  elementsToTranslate.forEach(element => {
+    element.textContent = element.getAttribute('data-se');
+  });
+
+  // Store the selected language in localStorage
+  localStorage.setItem("selectedLanguage", "sv");
+}
+
+function changeLanguageToEnglish() {
+  const elementsToTranslate = document.querySelectorAll('[data-en]');
+  elementsToTranslate.forEach(element => {
+    element.textContent = element.getAttribute('data-en');
+  });
+
+  // Store the selected language in localStorage
+  //localStorage.setItem("selectedLanguage", "en");
+}
+
+// Add event listeners for language switches
+document.getElementById('swedish').addEventListener('change', changeLanguageToSwedish);
+document.getElementById('english').addEventListener('change', changeLanguageToEnglish);
+
+// Load the selected language when the page loads
+window.addEventListener("load", loadLanguage);
+
+// Load the last selected language from local storage
+function loadLanguage() {
+  const selectedLanguage = localStorage.getItem("selectedLanguage");
+  if (selectedLanguage === "sv") {
+    changeLanguageToSwedish();
+  } else {
+    changeLanguageToEnglish();
+  }
+}
+
 
 function changeLanguage() {
-  var selectedLanguage = document.getElementById("language").value;
+  var selectedLanguage = document.querySelector('input[name="language"]:checked').value;
   var translatedElements = translations[selectedLanguage];
-  
+
   if (translatedElements) {
-    const headerElements = document.querySelectorAll("header, h1, h2, label");
-    headerElements.forEach(element => translateElement(element, translatedElements));
-  
-    const mainElements = document.querySelectorAll("h3, input, select, p");
-    mainElements.forEach(element => translateElement(element, translatedElements));
+    const elementsToTranslate = document.querySelectorAll('h2, label, select, p, [id]:not(#swedish):not(#english)');
     
-    const footerElements = document.querySelectorAll("footer, p");
-    footerElements.forEach(element => translateElement(element, translatedElements));
+    elementsToTranslate.forEach(element => translateElement(element, translatedElements));
     
-    // Translate the options in the select element
     translateSelectionOptions("priceSort", translatedElements);
   }
+
   // Store the selected language in localStorage
   localStorage.setItem("selectedLanguage", selectedLanguage);
 }
 
-function loadLanguage() {
-  var storedLanguage = localStorage.getItem("selectedLanguage");
-  if (storedLanguage) {
-    document.getElementById("language").value = storedLanguage;
-  }
-  changeLanguage();
-}
 
-document.getElementById("language").addEventListener("change", changeLanguage);
+const languageRadios = document.querySelectorAll('input[name="language"]');
+languageRadios.forEach(radio => {
+  radio.addEventListener("change", changeLanguage);
+
+const languageRadios = document.querySelectorAll('input[name="language"]');
+languageRadios.forEach(radio => {
+  radio.addEventListener("change", function() {
+
+    language = this.value === "en" ? false : true;
+    filterFoods();
+  });
+});
+
+});
+
+// Load the selected language when the page loads
 window.addEventListener("load", loadLanguage);
