@@ -183,6 +183,10 @@ function updateOrderSummary() {
   orderSummary.insertAdjacentHTML("beforeend", html);
 }
 
+if (localStorage.getItem("selectedLanguage") === "en") {
+  language = false;
+} else language = true;
+
 // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
 checkGlutenFree.addEventListener("change", filterFoods);
 checkLactoseFree.addEventListener("change", filterFoods);
