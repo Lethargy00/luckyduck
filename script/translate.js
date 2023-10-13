@@ -1,4 +1,6 @@
+
 //Hämtar elementets id och försöker hitta översättning, om översättning hittas ändras texten
+
 function translateElement(element, translatedElements) {
   const elementId = element.id;
   const translation = translatedElements[elementId];
@@ -21,12 +23,15 @@ function translateSelectionOptions(selectId, translatedElements) {
     }
   }
 }
+
 //Översätter till svenska
 function changeLanguageToSwedish() {
   const elementsToTranslate = document.querySelectorAll('[data-se]'); //Hämtar attributen data-se för varje element
+
   elementsToTranslate.forEach(element => {
     element.textContent = element.getAttribute('data-se');
   });
+
 
   //Sparar det valda språket 
   localStorage.setItem("selectedLanguage", "sv");
@@ -38,6 +43,7 @@ function changeLanguageToEnglish() {
   elementsToTranslate.forEach(element => {
     element.textContent = element.getAttribute('data-en');
   });
+
 
 }
 
@@ -68,16 +74,19 @@ function changeLanguage() {
   var translatedElements = translations[selectedLanguage];
 
   if (translatedElements) {
+
     const elementsToTranslate = document.querySelectorAll('h2, label, select, p, [id]:not(#swedish):not(#english)'); //Översätter element med tag och element utan id
     
     elementsToTranslate.forEach(element => translateElement(element, translatedElements));
     
+
     translateSelectionOptions("priceSort", translatedElements);
   }
 
   // Store the selected language in localStorage
   localStorage.setItem("selectedLanguage", selectedLanguage);
 }
+
 
 //Hämtar radio från DOM och lägger en händelselyssnare för radioknapparna som ändrar språket.
 //Kör antingen changeLanguage eller en annan funktion som påverkar filterFoods inne i index.js
@@ -93,6 +102,7 @@ languageRadios.forEach(radio => {
     filterFoods();
   });
 });
+
 
 });
 

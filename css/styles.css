@@ -1,0 +1,31 @@
+#mainLanguage {
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 0.3s;
+}
+
+#mainLanguage.show {
+    max-height: 100px;
+}
+
+#filterContainer {
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 0.3s;
+}
+
+#filterContainer.show {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#orderContainer {
+    max-height: 100px;
+    overflow-y: auto;
+    transition: max-height 0.3s;
+}
+
+#orderContainer.hide {
+    max-height: 0;
+    overflow-y: hidden;
+}
