@@ -36,7 +36,7 @@ function changeLanguageToEnglish() {
   });
 
   // Store the selected language in localStorage
-  //localStorage.setItem("selectedLanguage", "en");
+  localStorage.setItem("selectedLanguage", "en");
 }
 
 // Add event listeners for language switches
@@ -63,9 +63,9 @@ function changeLanguage() {
 
   if (translatedElements) {
     const elementsToTranslate = document.querySelectorAll('h2, label, select, p, [id]:not(#swedish):not(#english)');
-    
+
     elementsToTranslate.forEach(element => translateElement(element, translatedElements));
-    
+
     translateSelectionOptions("priceSort", translatedElements);
   }
 
@@ -78,14 +78,14 @@ const languageRadios = document.querySelectorAll('input[name="language"]');
 languageRadios.forEach(radio => {
   radio.addEventListener("change", changeLanguage);
 
-const languageRadios = document.querySelectorAll('input[name="language"]');
-languageRadios.forEach(radio => {
-  radio.addEventListener("change", function() {
+  const languageRadios = document.querySelectorAll('input[name="language"]');
+  languageRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
 
-    language = this.value === "en" ? false : true;
-    filterFoods();
+      language = this.value === "en" ? false : true;
+      filterFoods();
+    });
   });
-});
 
 });
 
