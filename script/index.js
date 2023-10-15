@@ -271,6 +271,54 @@ if (localStorage.getItem("basket")) {
   updateOrderList();
 }
 
+// Automatic year updating in the variable currentYear
+$(document).ready(function () {
+  var currentYear = new Date().getFullYear();
+
+  $("#currentYear").text(currentYear);
+});
+
+// If filter and language isn't open, show orderContainer
+function toggleContainers() {
+  const languageVisible = $("#mainLanguage").hasClass("show");
+  const filterVisible = $("#filterContainer").hasClass("show");
+
+  if (!languageVisible && !filterVisible) {
+    $("#orderContainer").removeClass("hide");
+  } else {
+    $("#orderContainer").addClass("hide");
+  }
+}
+
+// Toggle Language
+$("#languageButton").click(function () {
+  $("#mainLanguage").toggleClass("show");
+
+  $("#filterContainer").removeClass("show");
+
+  toggleContainers();
+});
+
+// Toggle Filters
+$("#mainFilters").click(function () {
+  $("#mainLanguage").removeClass("show");
+
+  $("#filterContainer").toggleClass("show");
+
+  toggleContainers();
+});
+
+// Makes order visible
+$("#orderTitle").click(function () {
+  $("#mainLanguage").removeClass("show");
+
+  $("#filterContainer").removeClass("show");
+
+  $("#orderContainer").removeClass("hide");
+
+  toggleContainers();
+});
+
 // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
 checkGlutenFree.addEventListener("change", filterFoods);
 checkLactoseFree.addEventListener("change", filterFoods);
