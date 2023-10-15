@@ -31,9 +31,20 @@
 }
 
 /* Temporary for testing  */
-.basketQuantity {
+.basketQuantitySvg {
   width: 20px;
+  height: 20px;
+  pointer-events: none;
 }
 li {
   list-style: none;
+}
+.basketQuantity {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline;
+  outline: none;
+  text-align: center;
 }
