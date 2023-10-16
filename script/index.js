@@ -78,9 +78,24 @@ async function getMenu() {
 getMenu();
 
 const filterFoods = function () {
-  // Filters the food items basen on checkboxes ticked
+  // Filters the food items based on checkboxes ticked
 
   filteredMenu = [...menu]; // Reset the filteredMenu to the original menu data
+
+  const filteredMeats = [];
+
+  // Uncheck vegetarian when filtering for meat
+  const uncheckVegetarian = () => {
+    checkVegetarian.checked = false;
+  };
+
+  // Uncheck all meat options when ticking vegetarian
+  const uncheckMeats = () => {
+    checkBeef.checked = false;
+    checkPork.checked = false;
+    checkChicken.checked = false;
+    checkFish.checked = false;
+  };
 
   if (checkGlutenFree.checked) {
     filteredMenu = filteredMenu.filter((food) => food.isGlutenFree);
@@ -89,31 +104,32 @@ const filterFoods = function () {
     filteredMenu = filteredMenu.filter((food) => food.isLactoseFree);
   }
   if (checkVegetarian.checked) {
-    // Uncheck all meat options when ticking vegetarian
-    checkBeef.checked = false;
-    checkPork.checked = false;
-    checkChicken.checked = false;
-    checkFish.checked = false;
+    uncheckMeats();
     filteredMenu = filteredMenu.filter((food) => food.isVegetarian);
   }
   if (checkBeef.checked) {
-    filteredMenu = filteredMenu.filter((food) => {
-      return food.typeOfMeat.includes("Beef");
-    });
+    filteredMeats.push("Beef");
+    uncheckVegetarian();
   }
+
   if (checkPork.checked) {
-    filteredMenu = filteredMenu.filter((food) => {
-      return food.typeOfMeat.includes("Pork");
-    });
+    filteredMeats.push("Pork");
+    uncheckVegetarian();
   }
+
   if (checkChicken.checked) {
-    filteredMenu = filteredMenu.filter((food) => {
-      return food.typeOfMeat.includes("Chicken");
-    });
+    filteredMeats.push("Chicken");
+    uncheckVegetarian();
   }
+
   if (checkFish.checked) {
+    filteredMeats.push("Fish");
+    uncheckVegetarian();
+  }
+
+  if (filteredMeats.length > 0) {
     filteredMenu = filteredMenu.filter((food) => {
-      return food.typeOfMeat.includes("Fish");
+      return filteredMeats.some((meat) => food.typeOfMeat.includes(meat));
     });
   }
 
@@ -156,7 +172,7 @@ const addToBasket = function (event) {
           let price = menuItem.price[0];
           let portion = "";
           if (target.classList.contains("addToBasketSmall")) {
-            portion = language ? "(liten)" : "(small)"; // Default for small portion
+            portion = smallPortionSvg; // Default for small portion
           } else if (target.classList.contains("addToBasketLarge")) {
             price = menuItem.price[1];
           }
@@ -210,8 +226,9 @@ function updateOrderList() {
     .filter((item) => item.quantity > 0) // Quantity must be greater than 0
     .forEach((item, i) => {
       const name = item.menuItem[lang];
-      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${item.id
-        }"><svg
+      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${
+        item.id
+      }"><svg
       class="basketQuantitySvg increaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -225,8 +242,9 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M4.5 15.75l7.5-7.5 7.5 7.5"
       />
-    </svg></button> ${item.quantity
-        } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
+    </svg></button> ${
+      item.quantity
+    } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
       class="basketQuantitySvg decreaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -240,8 +258,9 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
       />
-    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${item.price * item.quantity
-        }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
+    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${
+        item.price * item.quantity
+      }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
       orderList.insertAdjacentHTML("beforeend", html);
     });
   updateOrderSummary();
@@ -267,8 +286,6 @@ if (localStorage.getItem("basket")) {
   basket = JSON.parse(localStorage.getItem("basket"));
   updateOrderList();
 }
-
-
 
 // If filter and language isn't open, show orderContainer
 function toggleContainers() {
@@ -318,7 +335,6 @@ $(document).ready(function () {
   });
 });
 // jQuery code
-
 
 // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
 checkGlutenFree.addEventListener("change", filterFoods);

@@ -1,116 +1,197 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title class="title">Hem</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header with logo -->
     <header id="headerContainer">
-        <div class="header">
-            <img src="./pictures/lucky_duck.png" alt="logo">
-            
-            <h1 id="mainTitle">Lucky Duck Cafe & Bar</h1>
+      <div class="header">
+        <img src="./pictures/lucky_duck.png" alt="logo" />
 
-        </div>
+        <h1 id="mainTitle">Lucky Duck Cafe & Bar</h1>
+      </div>
     </header>
 
     <!-- Vertical left menu bar -->
     <section id="menuContainer">
-        <div class="menuBox">
-
-            <!-- Language Selector -->
-            <button id="languageButton">Language</button>
-            <div id="mainLanguage">
-                <div>
-                    <div class="languageBox">
-                        <label for="swedish" id="labelSwedish">Svenska</label>
-                        <input type="radio" id="swedish" name="language" checked>
-                    </div>
-                    <div class="languageBox">
-                        <label for="english" id="labelEnglish">English</label>
-                        <input type="radio" id="english" name="language" value="en">
-                    </div>
-                </div>
+      <div class="menuBox">
+        <!-- Language Selector -->
+        <button id="languageButton">Language</button>
+        <div id="mainLanguage">
+          <div>
+            <div class="languageBox">
+              <label for="swedish" id="labelSwedish">Svenska</label>
+              <input type="radio" id="swedish" name="language" checked />
             </div>
-
-            <!-- Filtering option -->
-            <button data-se="Filter" data-en="Filters" id="mainFilters">Filter</button>
-            <div id="filterContainer">
-
-                <!-- Filter meat options -->
-                <div>
-                    <h2 data-se="Kötträtter" data-en="Meat dishes" id="titleKötträtter">Kötträtter</h2>
-                    <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
-                    <label data-se="Vegetarisk" data-en="Vegetarian" for="vegetarian" id="labelVegetarian">Vegetarisk</label>
-                    <input type="checkbox" id="chicken" name="chicken" value="Chicken">
-                    <label data-se="Kyckling" data-en="Chicken" for="chicken" id="labelChicken">Kyckling</label>
-                    <input type="checkbox" id="pork" name="pork" value="Pork">
-                    <label data-se="Fläsk" data-en="Pork" for="pork" id="labelPork">Fläsk</label>
-                    <input type="checkbox" id="groundBeef" name="groundBeef" value="GroundBeef">
-                    <label data-se="Nöt" data-en="Beef" for="groundBeef" id="labelGroundBeef">Nöt</label>
-                    <input type="checkbox" id="fish" name="fish" value="Fish">
-                    <label data-se="Fisk" data-en="Fish" for="fish" id="labelFish">Fisk</label>
-                </div>
-
-                <!-- Filter allergies -->
-                <div>
-                    <h2 data-se="Allergier" data-en="Allergies" id="titleAllergies">Allergier</h2>
-                    <input type="checkbox" id="glutenFree" name="glutenFree" value="GlutenFree">
-                    <label data-se="Glutenfri" data-en="Gluten free" for="glutenFree" id="labelGlutenFree">Glutenfri</label>
-                    <input type="checkbox" id="lactoseFree" name="lactoseFree" value="LactoseFree">
-                    <label data-se="Laktosfri" data-en="Lactose free" for="lactoseFree" id="labelLactoseFree">Laktosfri</label>
-                </div>
-                
-                <!-- Sorting pricing from ascending, descending and standard -->
-                <div>
-                    <h2 data-se="Pris sortering" data-en="Price sorting" id="titlePriceSort">Pris sortering</h2>
-                    <select name="priceSort" id="priceSort">
-                        <option id="optionStandard" value="standard">Standard</option>
-                        <option data-se="Stigande" data-en="Ascending" id="optionAscending" value="ascending">Stigande</option>
-                        <option data-se="Fallande" data-en="Descending" id="optionDescending" value="descending">Fallande</option>
-                    </select>
-                </div>
+            <div class="languageBox">
+              <label for="english" id="labelEnglish">English</label>
+              <input type="radio" id="english" name="language" value="en" />
             </div>
-
-            <!-- Order List -->
-            <button data-se="Beställning" data-en="Your order" id="orderTitle">Beställning</button>
-
-            <div id="orderContainer">
-                <!-- List of products you ordered -->
-                <div class="orderList">
-                        
-                </div>
-
-                <!-- Here comes the price summary of the order -->
-                <div class="orderSummary">
-
-                </div>
-
-                <!-- Button to pay but without funktion -->
-                <button data-se="Beställ" data-en="Order" id="orderButton">Beställ</button>
-            </div>
+          </div>
         </div>
+
+        <!-- Filtering option -->
+        <button data-se="Filter" data-en="Filters" id="mainFilters">
+          Filter
+        </button>
+        <div id="filterContainer">
+          <!-- Filter meat options -->
+          <div>
+            <h2 data-se="Kötträtter" data-en="Meat dishes" id="titleKötträtter">
+              Kötträtter
+            </h2>
+            <input
+              type="checkbox"
+              id="vegetarian"
+              name="vegetarian"
+              value="Vegetarian"
+            />
+            <label
+              data-se="Vegetarisk"
+              data-en="Vegetarian"
+              for="vegetarian"
+              id="labelVegetarian"
+              >Vegetarisk</label
+            >
+            <input
+              type="checkbox"
+              id="chicken"
+              name="chicken"
+              value="Chicken"
+            />
+            <label
+              data-se="Kyckling"
+              data-en="Chicken"
+              for="chicken"
+              id="labelChicken"
+              >Kyckling</label
+            >
+            <input type="checkbox" id="pork" name="pork" value="Pork" />
+            <label data-se="Fläsk" data-en="Pork" for="pork" id="labelPork"
+              >Fläsk</label
+            >
+            <input
+              type="checkbox"
+              id="groundBeef"
+              name="groundBeef"
+              value="Beef"
+            />
+            <label
+              data-se="Nöt"
+              data-en="Beef"
+              for="groundBeef"
+              id="labelGroundBeef"
+              >Nöt</label
+            >
+            <input type="checkbox" id="fish" name="fish" value="Fish" />
+            <label data-se="Fisk" data-en="Fish" for="fish" id="labelFish"
+              >Fisk</label
+            >
+          </div>
+
+          <!-- Filter allergies -->
+          <div>
+            <h2 data-se="Allergier" data-en="Allergies" id="titleAllergies">
+              Allergier
+            </h2>
+            <input
+              type="checkbox"
+              id="glutenFree"
+              name="glutenFree"
+              value="GlutenFree"
+            />
+            <label
+              data-se="Glutenfri"
+              data-en="Gluten free"
+              for="glutenFree"
+              id="labelGlutenFree"
+              >Glutenfri</label
+            >
+            <input
+              type="checkbox"
+              id="lactoseFree"
+              name="lactoseFree"
+              value="LactoseFree"
+            />
+            <label
+              data-se="Laktosfri"
+              data-en="Lactose free"
+              for="lactoseFree"
+              id="labelLactoseFree"
+              >Laktosfri</label
+            >
+          </div>
+
+          <!-- Sorting pricing from ascending, descending and standard -->
+          <div>
+            <h2
+              data-se="Pris sortering"
+              data-en="Price sorting"
+              id="titlePriceSort"
+            >
+              Pris sortering
+            </h2>
+            <select name="priceSort" id="priceSort">
+              <option id="optionStandard" value="standard">Standard</option>
+              <option
+                data-se="Stigande"
+                data-en="Ascending"
+                id="optionAscending"
+                value="ascending"
+              >
+                Stigande
+              </option>
+              <option
+                data-se="Fallande"
+                data-en="Descending"
+                id="optionDescending"
+                value="descending"
+              >
+                Fallande
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Order List -->
+        <button data-se="Beställning" data-en="Your order" id="orderTitle">
+          Beställning
+        </button>
+
+        <div id="orderContainer">
+          <!-- List of products you ordered -->
+          <div class="orderList"></div>
+
+          <!-- Here comes the price summary of the order -->
+          <div class="orderSummary"></div>
+
+          <!-- Button to pay but without funktion -->
+          <button data-se="Beställ" data-en="Order" id="orderButton">
+            Beställ
+          </button>
+        </div>
+      </div>
     </section>
 
-    
     <!-- Main content window for food -->
     <section id="mainContainer">
-        <div id="mainFood">
-
-        </div>
+      <div id="mainFood"></div>
     </section>
 
     <!-- Footer -->
     <footer id="footerContainer">
-        <div id="footer">
-            <p id="copyright">Copyright © <span id="currentYear"></span> Lucky Duck ®</p>
-        </div>
+      <div id="footer">
+        <p id="copyright">
+          Copyright © <span id="currentYear"></span> Lucky Duck ®
+        </p>
+      </div>
     </footer>
     <script src="./script/index.js"></script>
     <script src="./script/translate.js"></script>
-</body>
+  </body>
 </html>
