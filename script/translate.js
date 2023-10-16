@@ -60,11 +60,15 @@ window.addEventListener("load", loadLanguage);
 //Laddar det valda språket som sparats i localStorage
 function loadLanguage() {
   const selectedLanguage = localStorage.getItem("selectedLanguage");
+  const swedishRadio = document.getElementById("swedish");//Hämtar swedish från DOM
+  const englishRadio = document.getElementById("english");//Hämtar english från DOM
+  const selectedCheckBox = document.querySelector('input[name="language"]:checked');//Hämtar den markerade radioknappen 
 
-  if (selectedLanguage === "sv") {
+  if (selectedLanguage === "sv" || !selectedCheckBox) { //Kontrollerar om valt språk är svenska eller om inget språk är valt och kör då koden inuti if
+    swedishRadio.checked = true;
     changeLanguageToSwedish();
-  } else {
-
+  } else if (selectedLanguage === "en"){//Om det valda språket är engelska körs koden nedan
+    englishRadio.checked = true;
     changeLanguageToEnglish();
   }
 }
