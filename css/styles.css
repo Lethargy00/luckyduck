@@ -1,3 +1,30 @@
+/* Grid */
+#headerContainer {
+  grid-area: header;
+}
+
+#menuContainer {
+  grid-area: menu;
+}
+
+#mainContainer {
+  grid-area: main;
+}
+
+#footerContainer {
+  grid-area: footer;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main main main'
+    'menu footer footer footer footer footer';
+}
+
+
+/* Hiding and showing button content */
 #mainLanguage {
   max-height: 0;
   overflow-y: hidden;
@@ -36,11 +63,13 @@
   height: 20px;
   pointer-events: none;
 }
+
 li {
   list-style: none;
 }
+
 .basketQuantity {
-  background: transparent;
+  background: none;
   border: none;
   padding: 0;
   cursor: pointer;

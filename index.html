@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Header with logo -->
-    <header>
+    <header id="headerContainer">
         <div class="header">
             <img src="./pictures/lucky_duck.png" alt="logo">
             
@@ -19,7 +19,7 @@
     </header>
 
     <!-- Vertical left menu bar -->
-    <section>
+    <section id="menuContainer">
         <div class="menuBox">
 
             <!-- Language Selector -->
@@ -96,21 +96,20 @@
         </div>
     </section>
 
-    <main>
-        <!-- Main content window for food -->
-        <section>
-            <div id="mainFood">
+    
+    <!-- Main content window for food -->
+    <section id="mainContainer">
+        <div id="mainFood">
 
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer>
-            <div id="footer">
-                <p id="copyright">Copyright © <span id="currentYear"></span> Lucky Duck ®</p>
-            </div>
-        </footer>
-    </main>
+    <!-- Footer -->
+    <footer id="footerContainer">
+        <div id="footer">
+            <p id="copyright">Copyright © <span id="currentYear"></span> Lucky Duck ®</p>
+        </div>
+    </footer>
     <script src="./script/index.js"></script>
     <script src="./script/translate.js"></script>
 </body>
