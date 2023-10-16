@@ -84,19 +84,6 @@ const filterFoods = function () {
 
   const filteredMeats = [];
 
-  // Uncheck vegetarian when filtering for meat
-  const uncheckVegetarian = () => {
-    checkVegetarian.checked = false;
-  };
-
-  // Uncheck all meat options when ticking vegetarian
-  const uncheckMeats = () => {
-    checkBeef.checked = false;
-    checkPork.checked = false;
-    checkChicken.checked = false;
-    checkFish.checked = false;
-  };
-
   if (checkGlutenFree.checked) {
     filteredMenu = filteredMenu.filter((food) => food.isGlutenFree);
   }
@@ -104,27 +91,26 @@ const filterFoods = function () {
     filteredMenu = filteredMenu.filter((food) => food.isLactoseFree);
   }
   if (checkVegetarian.checked) {
-    uncheckMeats();
+    checkBeef.checked = false;
+    checkPork.checked = false;
+    checkChicken.checked = false;
+    checkFish.checked = false;
     filteredMenu = filteredMenu.filter((food) => food.isVegetarian);
   }
   if (checkBeef.checked) {
     filteredMeats.push("Beef");
-    uncheckVegetarian();
   }
 
   if (checkPork.checked) {
     filteredMeats.push("Pork");
-    uncheckVegetarian();
   }
 
   if (checkChicken.checked) {
     filteredMeats.push("Chicken");
-    uncheckVegetarian();
   }
 
   if (checkFish.checked) {
     filteredMeats.push("Fish");
-    uncheckVegetarian();
   }
 
   if (filteredMeats.length > 0) {
