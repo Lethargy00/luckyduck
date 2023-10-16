@@ -44,9 +44,9 @@ const displayFoods = function (foods) {
     let priceHtml = "";
 
     if (food.price.length > 1) {
-      priceHtml = `<p class="food-price">${smallPortionSvg} ${food.price[0]} kr <button class="addToBasketSmall">${orderLanguage}</button></p><p>${largePortionSvg} ${food.price[1]} kr <button class="addToBasketLarge">${orderLanguage}</button></p>`;
+      priceHtml = `<p class="food-price">${smallPortionSvg} ${food.price[0]} kr <button class="addToBasket addToBasketSmall" id="id${food.id[0]}">${orderLanguage}</button></p><p>${largePortionSvg} ${food.price[1]} kr <button class="addToBasket addToBasketLarge" id="id${food.id[1]}">${orderLanguage}</button></p>`;
     } else {
-      priceHtml = `<p class="food-price">${largePortionSvg} ${food.price[0]} kr <button class="addToBasket">${orderLanguage}</button></p>`;
+      priceHtml = `<p class="food-price">${largePortionSvg} ${food.price[0]} kr <button class="addToBasket" id="id${food.id[0]}">${orderLanguage}</button></p>`;
     }
     const html = `<div><p class="food-title">${food[nameLanguage]}</p>
     ${priceHtml}
@@ -77,10 +77,10 @@ async function getMenu() {
 }
 getMenu();
 
-// Filters the food items basen on checkboxes ticked
 const filterFoods = function () {
-  // Reset the filteredMenu to the original menu data
-  filteredMenu = [...menu];
+  // Filters the food items basen on checkboxes ticked
+
+  filteredMenu = [...menu]; // Reset the filteredMenu to the original menu data
 
   if (checkGlutenFree.checked) {
     filteredMenu = filteredMenu.filter((food) => food.isGlutenFree);
@@ -131,61 +131,193 @@ const sortFoodByPrice = function (filteredMenu) {
   }
 };
 
-// Adding items to the basket
-foodDiv.addEventListener("click", function (event) {
+const addToBasket = function (event) {
   const target = event.target; // Gets the target you clicked
 
   // Checks if you clicked an actual button
-  if (
-    target.classList.contains("addToBasket") ||
-    target.classList.contains("addToBasketLarge") ||
-    target.classList.contains("addToBasketSmall")
-  ) {
-    // Finds the div containing food details
-    const foodContainer = target.closest("div");
-    // Checks if foodContainer is a truthy value (if the div was found it is truthy)
-    if (foodContainer) {
-      let icon = largePortionSvg; // Icon to represent large or small portion in basket
-      const name = foodContainer.querySelector(".food-title").textContent; // Gets the food name
-      let priceElement = foodContainer.querySelector(".food-price"); // Gets the food price
-      if (target.classList.contains("addToBasketSmall")) {
-        icon = smallPortionSvg; // Change default (lage portion) to small portion icon
-      }
-      if (target.classList.contains("addToBasketLarge")) {
-        // Alters price based on the button clicked
-        // If price has multiple options, use the second price in the array
-        priceElement = priceElement.nextElementSibling;
-      }
-      const priceText = priceElement.textContent;
-      const price = parseInt(priceText.match(/\d+/)); // Extract the price using regular expression that ckecks for one or more consecutive digits and then parses them to integers.
+  if (target.classList.contains("addToBasket")) {
+    const foodContainer = target.closest("div"); // Selects the div containing the food
 
-      // Ads the food item to the basket
-      basket.push({ name, price, icon });
-      updateOrderList();
-      updateOrderSummary();
+    if (foodContainer) {
+      // Extract the unique ID from the clicked button's class
+      const buttonIds = target.id.split(" ");
+      let id = null;
+      for (const idNum of buttonIds) {
+        if (idNum.startsWith("id")) {
+          id = parseInt(idNum.replace("id", ""));
+          break;
+        }
+      }
+      // If id is valid find the item inside the menu
+      if (!isNaN(id)) {
+        const menuItem = menu.find((item) => item.id.includes(id));
+        // If the menuItem is found, get the price depending on portion size
+        if (menuItem) {
+          let price = menuItem.price[0];
+          let portion = "";
+          if (target.classList.contains("addToBasketSmall")) {
+            portion = language ? "(liten)" : "(small)"; // Default for small portion
+          } else if (target.classList.contains("addToBasketLarge")) {
+            price = menuItem.price[1];
+          }
+          // Checks if item is already in the basket, if not adds the food item to the basket
+          const existingItem = basket.find((item) => item.id === id);
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            basket.push({ id, price, portion, quantity: 1, menuItem });
+          }
+        }
+      }
     }
   }
-});
+  updateOrderList();
+};
+
+const increaseDecreaseBasket = function (event) {
+  const target = event.target; // Gets the target you clicked
+  // Checks if you clicked a buton
+  if (target.classList.contains("basketQuantity")) {
+    const id = parseInt(target.getAttribute("id")); // Converts the id to number
+    if (!isNaN(id)) {
+      // checks if id is a valid number
+      const item = basket.find((item) => item.id === id); // Gets the menuitem with matching id
+      if (item) {
+        if (target.classList.contains("increaseQuantity")) {
+          item.quantity += 1; // If increase button clicked, up quantity
+          updateOrderList();
+        } else if (target.classList.contains("decreaseQuantity")) {
+          if (item.quantity > 1) {
+            item.quantity -= 1; // If decrease button clicked and quantity is greater than 1, lower quantity
+          } else {
+            // If quantity is 1 or less, remove the item from the basket
+            const index = basket.findIndex((item) => item.id === id);
+            basket.splice(index, 1);
+          }
+        }
+        updateOrderList();
+      }
+    }
+  }
+};
 
 function updateOrderList() {
+  localStorage.setItem("basket", JSON.stringify(basket)); // Save basket so page can be reloaded
   orderList.innerHTML = "";
-  basket.forEach((item) => {
-    const html = `<li class="basketItem">${item.name} ${item.icon}</li>`;
-    orderList.insertAdjacentHTML("beforeend", html);
-    console.log(item);
-  });
+  const lang = language ? "seName" : "enName"; // access translated names
+  // Create HTML for each item added to the basket
+  basket
+    .filter((item) => item.quantity > 0) // Quantity must be greater than 0
+    .forEach((item, i) => {
+      const name = item.menuItem[lang];
+      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${
+        item.id
+      }"><svg
+      class="basketQuantitySvg increaseQuantitySvg"
+      
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4.5 15.75l7.5-7.5 7.5 7.5"
+      />
+    </svg></button> ${
+      item.quantity
+    } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
+      class="basketQuantitySvg decreaseQuantitySvg"
+      
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+      />
+    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${
+        item.price * item.quantity
+      }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
+      orderList.insertAdjacentHTML("beforeend", html);
+    });
+  updateOrderSummary();
 }
 
 function updateOrderSummary() {
   orderSummary.innerHTML = "";
-  const total = basket.reduce((sum, item) => sum + item.price, 0); //Starts at 0 and accumulates the price
-  const html = `Summa: ${total} kr`;
+  let sum = language ? "Summa" : "Sum";
+  // Calculae total by refucing basket to single value (price * quantity)
+  const total = basket.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  ); //Starts at 0 and accumulates the price
+  const html = `${sum}: ${total} kr`;
   orderSummary.insertAdjacentHTML("beforeend", html);
 }
 
 if (localStorage.getItem("selectedLanguage") === "en") {
   language = false;
 } else language = true;
+
+if (localStorage.getItem("basket")) {
+  basket = JSON.parse(localStorage.getItem("basket"));
+  updateOrderList();
+}
+
+// Automatic year updating in the variable currentYear
+$(document).ready(function () {
+  var currentYear = new Date().getFullYear();
+
+  $("#currentYear").text(currentYear);
+});
+
+// If filter and language isn't open, show orderContainer
+function toggleContainers() {
+  const languageVisible = $("#mainLanguage").hasClass("show");
+  const filterVisible = $("#filterContainer").hasClass("show");
+
+  if (!languageVisible && !filterVisible) {
+    $("#orderContainer").removeClass("hide");
+  } else {
+    $("#orderContainer").addClass("hide");
+  }
+}
+
+// Toggle Language
+$("#languageButton").click(function () {
+  $("#mainLanguage").toggleClass("show");
+
+  $("#filterContainer").removeClass("show");
+
+  toggleContainers();
+});
+
+// Toggle Filters
+$("#mainFilters").click(function () {
+  $("#mainLanguage").removeClass("show");
+
+  $("#filterContainer").toggleClass("show");
+
+  toggleContainers();
+});
+
+// Makes order visible
+$("#orderTitle").click(function () {
+  $("#mainLanguage").removeClass("show");
+
+  $("#filterContainer").removeClass("show");
+
+  $("#orderContainer").removeClass("hide");
+
+  toggleContainers();
+});
 
 // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
 checkGlutenFree.addEventListener("change", filterFoods);
@@ -196,10 +328,16 @@ checkPork.addEventListener("change", filterFoods);
 checkChicken.addEventListener("change", filterFoods);
 checkFish.addEventListener("change", filterFoods);
 
+// Adding items to the basket
+foodDiv.addEventListener("click", addToBasket);
+// Increasing or decreasing basket quantity
+orderList.addEventListener("click", increaseDecreaseBasket);
+
 languageSelect.forEach((change) =>
   change.addEventListener("change", function () {
     language = !language; // Switch from default Swedish to English
     filterFoods();
+    updateOrderList();
   })
 );
 
