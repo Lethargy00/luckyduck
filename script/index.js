@@ -210,9 +210,8 @@ function updateOrderList() {
     .filter((item) => item.quantity > 0) // Quantity must be greater than 0
     .forEach((item, i) => {
       const name = item.menuItem[lang];
-      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${
-        item.id
-      }"><svg
+      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${item.id
+        }"><svg
       class="basketQuantitySvg increaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -226,9 +225,8 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M4.5 15.75l7.5-7.5 7.5 7.5"
       />
-    </svg></button> ${
-      item.quantity
-    } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
+    </svg></button> ${item.quantity
+        } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
       class="basketQuantitySvg decreaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -242,9 +240,8 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
       />
-    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${
-        item.price * item.quantity
-      }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
+    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${item.price * item.quantity
+        }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
       orderList.insertAdjacentHTML("beforeend", html);
     });
   updateOrderSummary();
@@ -271,12 +268,7 @@ if (localStorage.getItem("basket")) {
   updateOrderList();
 }
 
-// Automatic year updating in the variable currentYear
-$(document).ready(function () {
-  var currentYear = new Date().getFullYear();
 
-  $("#currentYear").text(currentYear);
-});
 
 // If filter and language isn't open, show orderContainer
 function toggleContainers() {
@@ -290,34 +282,43 @@ function toggleContainers() {
   }
 }
 
-// Toggle Language
-$("#languageButton").click(function () {
-  $("#mainLanguage").toggleClass("show");
+// jQuery code
+$(document).ready(function () {
+  // Automatic year updating in the variable currentYear
+  var currentYear = new Date().getFullYear();
+  $("#currentYear").text(currentYear);
 
-  $("#filterContainer").removeClass("show");
+  // Toggle Language
+  $("#languageButton").click(function () {
+    $("#mainLanguage").toggleClass("show");
 
-  toggleContainers();
+    $("#filterContainer").removeClass("show");
+
+    toggleContainers();
+  });
+
+  // Toggle Filters
+  $("#mainFilters").click(function () {
+    $("#mainLanguage").removeClass("show");
+
+    $("#filterContainer").toggleClass("show");
+
+    toggleContainers();
+  });
+
+  // Makes order visible
+  $("#orderTitle").click(function () {
+    $("#mainLanguage").removeClass("show");
+
+    $("#filterContainer").removeClass("show");
+
+    $("#orderContainer").removeClass("hide");
+
+    toggleContainers();
+  });
 });
+// jQuery code
 
-// Toggle Filters
-$("#mainFilters").click(function () {
-  $("#mainLanguage").removeClass("show");
-
-  $("#filterContainer").toggleClass("show");
-
-  toggleContainers();
-});
-
-// Makes order visible
-$("#orderTitle").click(function () {
-  $("#mainLanguage").removeClass("show");
-
-  $("#filterContainer").removeClass("show");
-
-  $("#orderContainer").removeClass("hide");
-
-  toggleContainers();
-});
 
 // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
 checkGlutenFree.addEventListener("change", filterFoods);
