@@ -89,6 +89,10 @@ header {
   align-items: center;
 }
 
+footer {
+  color: #ffa94d;
+}
+
 
 /* Hiding and showing button content */
 #mainLanguage,
@@ -135,18 +139,19 @@ li {
 
   header {
     position: fixed;
+    height: 12vw;
     width: 100%;
   }
 
   .menuBox {
-    margin-top: 85px;
+    margin-top: 14vw;
   }
 
   .header>h1 {
-    min-width: auto;
+    font-size: 7vw;
   }
 
   .header img {
-    height: 70px;
+    height: 10vw;
   }
 }
