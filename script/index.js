@@ -212,9 +212,8 @@ function updateOrderList() {
     .filter((item) => item.quantity > 0) // Quantity must be greater than 0
     .forEach((item, i) => {
       const name = item.menuItem[lang];
-      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${
-        item.id
-      }"><svg
+      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${item.id
+        }"><svg
       class="basketQuantitySvg increaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -228,9 +227,8 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M4.5 15.75l7.5-7.5 7.5 7.5"
       />
-    </svg></button> ${
-      item.quantity
-    } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
+    </svg></button> ${item.quantity
+        } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
       class="basketQuantitySvg decreaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -244,9 +242,8 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
       />
-    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${
-        item.price * item.quantity
-      }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
+    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${item.price * item.quantity
+        }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
       orderList.insertAdjacentHTML("beforeend", html);
     });
   updateOrderSummary();
@@ -318,6 +315,18 @@ $(document).ready(function () {
     $("#orderContainer").removeClass("hide");
 
     toggleContainers();
+  });
+
+  // Ability to press the div on languages
+  $(".languageBox").click(function () {
+    $(this).find('input[type="radio"]').prop('checked', true);
+  });
+
+  // Ability to press the div on filterSelectors
+  $('.filterSelect').on('click', function () {
+    var target = $(this).data('target');
+    var checkbox = $('#' + target);
+    checkbox.prop('checked', !checkbox.prop('checked'));
   });
 });
 // jQuery code

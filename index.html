@@ -45,53 +45,64 @@
             <h2 data-se="Kötträtter" data-en="Meat dishes" id="titleKötträtter">
               Kötträtter
             </h2>
-            <input
-              type="checkbox"
-              id="vegetarian"
-              name="vegetarian"
-              value="Vegetarian"
-            />
-            <label
-              data-se="Vegetarisk"
-              data-en="Vegetarian"
-              for="vegetarian"
-              id="labelVegetarian"
-              >Vegetarisk</label
-            >
-            <input
-              type="checkbox"
-              id="chicken"
-              name="chicken"
-              value="Chicken"
-            />
-            <label
-              data-se="Kyckling"
-              data-en="Chicken"
-              for="chicken"
-              id="labelChicken"
-              >Kyckling</label
-            >
-            <input type="checkbox" id="pork" name="pork" value="Pork" />
-            <label data-se="Fläsk" data-en="Pork" for="pork" id="labelPork"
-              >Fläsk</label
-            >
-            <input
-              type="checkbox"
-              id="groundBeef"
-              name="groundBeef"
-              value="Beef"
-            />
-            <label
-              data-se="Nöt"
-              data-en="Beef"
-              for="groundBeef"
-              id="labelGroundBeef"
-              >Nöt</label
-            >
-            <input type="checkbox" id="fish" name="fish" value="Fish" />
-            <label data-se="Fisk" data-en="Fish" for="fish" id="labelFish"
-              >Fisk</label
-            >
+
+            <div class="filterSelect" data-target="vegetarian">
+              <label
+                data-se="Vegetarisk"
+                data-en="Vegetarian"
+                for="vegetarian"
+                id="labelVegetarian"
+                >Vegetarisk</label
+              >
+              <input
+                type="checkbox"
+                id="vegetarian"
+                name="vegetarian"
+                value="Vegetarian"
+              />
+            </div>
+            <div class="filterSelect" data-target="chicken">
+              <label
+                data-se="Kyckling"
+                data-en="Chicken"
+                for="chicken"
+                id="labelChicken"
+                >Kyckling</label
+              >
+              <input
+                type="checkbox"
+                id="chicken"
+                name="chicken"
+                value="Chicken"
+              />
+            </div>
+            <div class="filterSelect" data-target="pork">
+              <label data-se="Fläsk" data-en="Pork" for="pork" id="labelPork"
+                >Fläsk</label
+              >
+              <input type="checkbox" id="pork" name="pork" value="Pork" />
+            </div>
+            <div class="filterSelect" data-target="groundBeef">
+              <label
+                data-se="Nöt"
+                data-en="Beef"
+                for="groundBeef"
+                id="labelGroundBeef"
+                >Nöt</label
+              >
+              <input
+                type="checkbox"
+                id="groundBeef"
+                name="groundBeef"
+                value="Beef"
+              />
+            </div>
+            <div class="filterSelect" data-target="fish">
+              <label data-se="Fisk" data-en="Fish" for="fish" id="labelFish"
+                >Fisk</label
+              >
+              <input type="checkbox" id="fish" name="fish" value="Fish" />
+            </div>
           </div>
 
           <!-- Filter allergies -->
@@ -99,32 +110,36 @@
             <h2 data-se="Allergier" data-en="Allergies" id="titleAllergies">
               Allergier
             </h2>
-            <input
-              type="checkbox"
-              id="glutenFree"
-              name="glutenFree"
-              value="GlutenFree"
-            />
-            <label
-              data-se="Glutenfri"
-              data-en="Gluten free"
-              for="glutenFree"
-              id="labelGlutenFree"
-              >Glutenfri</label
-            >
-            <input
-              type="checkbox"
-              id="lactoseFree"
-              name="lactoseFree"
-              value="LactoseFree"
-            />
-            <label
-              data-se="Laktosfri"
-              data-en="Lactose free"
-              for="lactoseFree"
-              id="labelLactoseFree"
-              >Laktosfri</label
-            >
+            <div class="filterSelect" data-target="glutenFree">
+              <label
+                data-se="Glutenfri"
+                data-en="Gluten free"
+                for="glutenFree"
+                id="labelGlutenFree"
+                >Glutenfri</label
+              >
+              <input
+                type="checkbox"
+                id="glutenFree"
+                name="glutenFree"
+                value="GlutenFree"
+              />
+            </div>
+            <div class="filterSelect" data-target="lactoseFree">
+              <label
+                data-se="Laktosfri"
+                data-en="Lactose free"
+                for="lactoseFree"
+                id="labelLactoseFree"
+                >Laktosfri</label
+              >
+              <input
+                type="checkbox"
+                id="lactoseFree"
+                name="lactoseFree"
+                value="LactoseFree"
+              />
+            </div>
           </div>
 
           <!-- Sorting pricing from ascending, descending and standard -->
