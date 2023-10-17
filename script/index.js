@@ -316,18 +316,6 @@ $(document).ready(function () {
 
     toggleContainers();
   });
-
-  // Ability to press the div on languages
-  $(".languageBox").click(function () {
-    $(this).find('input[type="radio"]').prop('checked', true);
-  });
-
-  // Ability to press the div on filterSelectors
-  $('.filterSelect').on('click', function () {
-    var target = $(this).data('target');
-    var checkbox = $('#' + target);
-    checkbox.prop('checked', !checkbox.prop('checked'));
-  });
 });
 // jQuery code
 
