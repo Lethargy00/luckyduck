@@ -18,7 +18,7 @@ body {
   position: relative;
   max-width: 123ch;
   gap: 10px;
-  grid-template-columns: 23ch 1fr;
+  grid-template-columns: 23ch 100ch;
   grid-template-rows: 18ch 1fr 2ch;
 }
 
@@ -37,7 +37,7 @@ header {
   background-image: url(../pictures/egg.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-y: -300px;
+  background-position: center;
 }
 
 .header {
@@ -48,7 +48,6 @@ header {
   width: 100%;
   border-bottom: #ffa94d solid 4px;
   backdrop-filter: blur(5px) brightness(50%);
-  /* Adjust the blur value as needed */
 }
 
 .header>h1 {
@@ -74,12 +73,70 @@ header {
 .menuBox>button {
   border: 0;
   height: 50px;
+  letter-spacing: 4px;
+  font-size: 20px;
+  font-weight: 500;
   background-color: #ffa94d;
+  border-radius: 10px;
 }
 
 .orderList {
   max-height: 200px;
   overflow-y: auto;
+}
+
+/* Main */
+#mainFood {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.food-cards {
+  height: 340px;
+  width: 250px;
+  box-shadow: 2px 2px 15px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.addToBasket {
+  text-align: center;
+  border: none;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background-color: #ffa94d;
+  border-radius: 6px;
+  padding: 5px 12px;
+}
+
+.addToBasket:hover {
+  background-color: #ffc384;
+  cursor: pointer;
+}
+
+.food-img {
+  width: 100%;
+  height: 30%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.food-price,
+.food-title,
+.food-description {
+  margin-top: 20px;
+  padding: 0 4px;
+}
+
+.food-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 0;
 }
 
 /* Footer */
@@ -98,15 +155,16 @@ footer {
 #mainLanguage,
 #filterContainer,
 #orderContainer.hide {
-  height: 0;
+  max-height: 0;
   overflow-y: hidden;
-  transition: height 0.3s;
+  transition: max-height 0.3s ease;
 }
 
 #mainLanguage.show,
 #filterContainer.show,
 #orderContainer {
-  height: 400px;
+  max-height: 400px;
+  transition: max-height 0.3s ease;
 }
 
 
@@ -131,7 +189,7 @@ li {
   text-align: center;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   body {
     display: flex;
     flex-direction: column;
@@ -139,12 +197,8 @@ li {
 
   header {
     position: fixed;
-    height: 12vw;
+    height: 15vw;
     width: 100%;
-  }
-
-  .menuBox {
-    margin-top: 14vw;
   }
 
   .header>h1 {
@@ -152,6 +206,38 @@ li {
   }
 
   .header img {
-    height: 10vw;
+    height: 11vw;
   }
+
+  #mainLanguage,
+  #filterContainer,
+  #orderContainer.hide {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #mainLanguage.show,
+  #filterContainer.show,
+  #orderContainer {
+    max-height: 250px;
+    overflow-y: auto;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .menuBox {
+    margin-top: 17vw;
+  }
+
+  .menuBox>button {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+
+  #mainFood {
+    justify-content: center;
+  }
+
+
 }

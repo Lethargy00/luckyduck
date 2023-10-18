@@ -44,11 +44,11 @@ const displayFoods = function (foods) {
     let priceHtml = "";
 
     if (food.price.length > 1) {
-      priceHtml = `<p class="food-price">${smallPortionSvg} ${food.price[0]} kr <button class="addToBasket addToBasketSmall" id="id${food.id[0]}">${orderLanguage}</button></p><p>${largePortionSvg} ${food.price[1]} kr <button class="addToBasket addToBasketLarge" id="id${food.id[1]}">${orderLanguage}</button></p>`;
+      priceHtml = `<div class="food-price">${smallPortionSvg} ${food.price[0]} kr <button class="addToBasket addToBasketSmall" id="id${food.id[0]}">${orderLanguage}</button></div><div>${largePortionSvg} ${food.price[1]} kr <button class="addToBasket addToBasketLarge" id="id${food.id[1]}">${orderLanguage}</button></div>`;
     } else {
-      priceHtml = `<p class="food-price">${largePortionSvg} ${food.price[0]} kr <button class="addToBasket" id="id${food.id[0]}">${orderLanguage}</button></p>`;
+      priceHtml = `<div class="food-price">${largePortionSvg} ${food.price[0]} kr <button class="addToBasket" id="id${food.id[0]}">${orderLanguage}</button></div>`;
     }
-    const html = `<div><p class="food-title">${food[nameLanguage]}</p>
+    const html = `<div class="food-cards"><img class="food-img" src="${food.img}" alt="Food Image"><p class="food-title">${food[nameLanguage]}</p>
     ${priceHtml}
     <p class="food-description">${food[descriptionLanguage]}</p></div>`;
 

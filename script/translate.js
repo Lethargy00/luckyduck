@@ -1,6 +1,5 @@
 
 //Hämtar elementets id och försöker hitta översättning, om översättning hittas ändras texten
-
 function translateElement(element, translatedElements) {
   const elementId = element.id;
   const translation = translatedElements[elementId];
@@ -67,7 +66,7 @@ function loadLanguage() {
   if (selectedLanguage === "sv" || !selectedCheckBox) { //Kontrollerar om valt språk är svenska eller om inget språk är valt och kör då koden inuti if
     swedishRadio.checked = true;
     changeLanguageToSwedish();
-  } else if (selectedLanguage === "en"){//Om det valda språket är engelska körs koden nedan
+  } else if (selectedLanguage === "en") {//Om det valda språket är engelska körs koden nedan
     englishRadio.checked = true;
     changeLanguageToEnglish();
   }
