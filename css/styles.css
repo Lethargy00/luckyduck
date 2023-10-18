@@ -90,6 +90,35 @@ header {
   margin-bottom: 4px;
 }
 
+#mainLanguage>div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.languageBox {
+  display: grid;
+  grid-template-columns: 1fr 16px;
+  width: 90%;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #ffc384;
+}
+
+.languageBox:hover {
+  background-color: #ffa94d;
+}
+
+.languageBox>label {
+  letter-spacing: 4px;
+  font-weight: 500;
+}
+
+input[type='radio'] {
+  accent-color: #000000;
+}
+
 .basketItem {
   margin-bottom: 4px;
 }
