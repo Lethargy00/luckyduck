@@ -212,7 +212,7 @@ function updateOrderList() {
     .filter((item) => item.quantity > 0) // Quantity must be greater than 0
     .forEach((item, i) => {
       const name = item.menuItem[lang];
-      const html = `<li class="basketItem item${i}"><button class="basketQuantity increaseQuantity" id="${item.id
+      const html = `<li class="basketItem item${i}"> <span class="foodName">${name}</span>  <span class="foodPortion">${item.portion}</span></br> <button class="basketQuantity increaseQuantity" id="${item.id
         }"><svg
       class="basketQuantitySvg increaseQuantitySvg"
       
@@ -242,8 +242,8 @@ function updateOrderList() {
         stroke-linejoin="round"
         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
       />
-    </svg></button> <span class="foodName">${name}</span> <span class="foodPrice">${item.price * item.quantity
-        }</span> kr <span class="foodPortion">${item.portion}</span></li>`;
+    </svg></button> <span class="foodPrice">${item.price * item.quantity
+        }</span> kr</li>`;
       orderList.insertAdjacentHTML("beforeend", html);
     });
   updateOrderSummary();
