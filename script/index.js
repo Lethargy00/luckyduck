@@ -42,8 +42,7 @@ $(document).ready(function () {
         priceHtml = `<div class="food-price">${largePortionSvg} ${food.price[0]} kr <button class="addToBasket" id="id${food.id[0]}">${orderLanguage}</button></div>`;
       }
       const html = `<div class="food-cards"><img class="food-img" src="${food.img}" alt="Food Image"><p class="food-title">${food[nameLanguage]}</p>
-    ${priceHtml}
-    <p class="food-description">${food[descriptionLanguage]}</p></div>`;
+    ${priceHtml}<div><p class="food-description">${food[descriptionLanguage]}</p></div></div>`;
 
       foodDiv.insertAdjacentHTML("beforeend", html);
     });
