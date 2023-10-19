@@ -17,9 +17,10 @@ body {
   display: grid;
   position: relative;
   background-color: #FAF4EA;
-  gap: 10px;
+  height: 100%;
+  grid-gap: 10px;
   grid-template-columns: 25ch 80ch;
-  grid-template-rows: 18ch 1fr 2ch;
+  grid-template-rows: 18vh 77.87vh 2vh;
 }
 
 #headerContainer,
@@ -29,6 +30,8 @@ body {
 
 #mainContainer {
   grid-column: 2 / -1;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 /* Header */
@@ -60,7 +63,7 @@ header::before {
 }
 
 #header>h1 {
-  font-size: 60px;
+  font-size: 6vh;
   color: #ffa94d;
   font-family: 'Marck Script', cursive;
 }
@@ -69,7 +72,7 @@ header::before {
   position: absolute;
   left: 0;
   margin-left: 5px;
-  height: 150px;
+  height: 17vh;
 }
 
 /* Menu */
@@ -125,6 +128,7 @@ header::before {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .languageBox,
@@ -209,8 +213,6 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-height: 755px;
-  overflow-y: auto;
   gap: 15px;
 }
 

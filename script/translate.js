@@ -1,41 +1,50 @@
-//Översätter till svenska
-function changeLanguage(language) {
-  const elementsToTranslate = document.querySelectorAll(
-    language === "sv" ? "[data-se]" : "[data-en]"
-  ); //Hämtar attributen data-se för varje element
+$(document).ready(function () {
 
-  elementsToTranslate.forEach((element) => {
-    element.textContent =
-      language === "sv"
-        ? element.getAttribute("data-se")
-        : element.getAttribute("data-en");
-  });
-  document.documentElement.setAttribute("lang", language); //semantisk lang="" html
-  localStorage.setItem("selectedLanguage", language);
-}
+  console.log(appletree);
 
-//Händelselyssnare för ändring av språket
-document
-  .getElementById("swedish")
-  .addEventListener("change", () => changeLanguage("sv"));
-document
-  .getElementById("english")
-  .addEventListener("change", () => changeLanguage("en"));
+  //Översätter till svenska
+  function changeLanguage(language) {
+    const elementsToTranslate = document.querySelectorAll(
+      language === "sv" ? "[data-se]" : "[data-en]"
+    ); //Hämtar attributen data-se för varje element
 
-//Laddar det valda språket som sparats i localStorage
-function loadLanguage() {
-  const selectedLanguage = localStorage.getItem("selectedLanguage");
-  const swedishRadio = document.getElementById("swedish"); //Hämtar swedish från DOM
-  const englishRadio = document.getElementById("english"); //Hämtar english från DOM
-
-  if (selectedLanguage === "sv") {
-    //Kontrollerar om valt språk är svenska eller om inget språk är valt och kör då koden inuti if
-    swedishRadio.checked = true;
-  } else if (selectedLanguage === "en") {
-    //Om det valda språket är engelska körs koden nedan
-    englishRadio.checked = true;
+    elementsToTranslate.forEach((element) => {
+      element.textContent =
+        language === "sv"
+          ? element.getAttribute("data-se")
+          : element.getAttribute("data-en");
+    });
+    document.documentElement.setAttribute("lang", language); //semantisk lang="" html
+    localStorage.setItem("selectedLanguage", language);
   }
-  changeLanguage(selectedLanguage);
-}
-//Laddar det valda språket när sidan laddas
-window.addEventListener("load", loadLanguage);
+
+  //Händelselyssnare för ändring av språket
+  document
+    .getElementById("swedish")
+    .addEventListener("change", () => changeLanguage("sv"));
+  document
+    .getElementById("english")
+    .addEventListener("change", () => changeLanguage("en"));
+
+  //Laddar det valda språket som sparats i localStorage
+  function loadLanguage() {
+    const selectedLanguage = localStorage.getItem("selectedLanguage");
+    const swedishRadio = document.getElementById("swedish"); //Hämtar swedish från DOM
+    const englishRadio = document.getElementById("english"); //Hämtar english från DOM
+
+    if (selectedLanguage === "sv") {
+      //Kontrollerar om valt språk är svenska eller om inget språk är valt och kör då koden inuti if
+      swedishRadio.checked = true;
+      language = "sv";
+
+    } else if (selectedLanguage === "en") {
+      //Om det valda språket är engelska körs koden nedan
+      englishRadio.checked = true;
+      language = "en";
+
+    }
+    changeLanguage(selectedLanguage);
+  }
+  //Laddar det valda språket när sidan laddas
+  window.addEventListener("load", loadLanguage);
+});

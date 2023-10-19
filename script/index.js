@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
   const foodDiv = document.querySelector("#main");
   const checkGlutenFree = document.querySelector("input[name=glutenFree]");
   const checkLactoseFree = document.querySelector("input[name=lactoseFree]");
@@ -19,7 +20,7 @@ $(document).ready(function () {
     '<svg class="portionIcon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>';
 
   //Setting default values
-  let language = true;
+  let language = "sv";
   let selectedSort = "standard";
   let menu = [];
   let basket = [];
@@ -27,9 +28,9 @@ $(document).ready(function () {
   // This displays the foods by inserting HTML to the index.html
   const displayFoods = function (foods) {
     foodDiv.innerHTML = "";
-    const nameLanguage = language ? "seName" : "enName";
-    const descriptionLanguage = language ? "seDescription" : "enDescription";
-    const orderLanguage = language ? "Beställ" : "Order";
+    const nameLanguage = language === "sv" ? "seName" : "enName";
+    const descriptionLanguage = language === "sv" ? "seDescription" : "enDescription";
+    const orderLanguage = language === "sv" ? "Beställ" : "Order";
 
     const sortedFoods = sortFoodByPrice(foods);
     sortedFoods.forEach((food) => {
@@ -209,7 +210,7 @@ $(document).ready(function () {
   function updateOrderList() {
     localStorage.setItem("basket", JSON.stringify(basket)); // Save basket so page can be reloaded
     orderList.innerHTML = "";
-    const lang = language ? "seName" : "enName"; // access translated names
+    const lang = language === "sv" ? "seName" : "enName"; // access translated names
     // Create HTML for each item added to the basket
     basket
       .filter((item) => item.quantity > 0) // Quantity must be greater than 0
@@ -254,7 +255,7 @@ $(document).ready(function () {
 
   function updateOrderSummary() {
     orderSummary.innerHTML = "";
-    let sum = language ? "Summa" : "Sum";
+    let sum = language === "sv" ? "Summa" : "Sum";
     // Calculae total by refucing basket to single value (price * quantity)
     const total = basket.reduce(
       (sum, item) => sum + item.price * item.quantity,
@@ -264,9 +265,7 @@ $(document).ready(function () {
     orderSummary.insertAdjacentHTML("beforeend", html);
   }
 
-  if (localStorage.getItem("selectedLanguage") === "en") {
-    language = false;
-  } else language = true;
+  localStorage.getItem("selectedLanguage") === "en" ? "sv" : "en";
 
   if (localStorage.getItem("basket")) {
     basket = JSON.parse(localStorage.getItem("basket"));
@@ -340,13 +339,9 @@ $(document).ready(function () {
   // jQuery code
 
   // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
-  checkGlutenFree.addEventListener("change", filterFoods);
-  checkLactoseFree.addEventListener("change", filterFoods);
-  checkVegetarian.addEventListener("change", filterFoods);
-  checkBeef.addEventListener("change", filterFoods);
-  checkPork.addEventListener("change", filterFoods);
-  checkChicken.addEventListener("change", filterFoods);
-  checkFish.addEventListener("change", filterFoods);
+  $("#filterContainer").on("change", function (event) {
+    if (event.target.type === "checkbox") filterFoods();
+  });
 
   // Adding items to the basket
   foodDiv.addEventListener("click", addToBasket);
@@ -355,7 +350,7 @@ $(document).ready(function () {
 
   languageSelect.forEach((change) =>
     change.addEventListener("change", function () {
-      language = !language; // Switch from default Swedish to English
+      language = language === "sv" ? "en" : "sv";
       filterFoods();
       updateOrderList();
     })
