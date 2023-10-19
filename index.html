@@ -11,7 +11,7 @@
     <!-- Header with logo -->
     <header id="headerContainer">
       <div id="header">
-        <img src="./pictures/logo.svg" alt="logo" />
+        <img src="./pictures/logo.svg" alt="Lucky Duck Logo" />
         <h1 id="mainTitle">Lucky Duck Café & Bar</h1>
       </div>
     </header>
@@ -20,7 +20,14 @@
     <section id="menuContainer">
       <div id="menu">
         <!-- Language Selector -->
-        <button data-se="Språk" data-en="Language" id="languageButton" class="button">Språk</button>
+        <button
+          data-se="Språk"
+          data-en="Language"
+          id="languageButton"
+          class="button"
+        >
+          Språk
+        </button>
         <div id="mainLanguage">
           <div>
             <div class="languageBox">
@@ -35,14 +42,23 @@
         </div>
 
         <!-- Filtering option -->
-        <button data-se="Filter" data-en="Filters" id="filterButton" class="button">
+        <button
+          data-se="Filter"
+          data-en="Filters"
+          id="filterButton"
+          class="button"
+        >
           Filter
         </button>
         <div id="filterContainer">
           <!-- Filter meat options -->
           <div class="filter">
-           <h2 data-se="Kötträtter" data-en="Meat dishes" class="subFilterHeader">
-            Kötträtter
+            <h2
+              data-se="Kötträtter"
+              data-en="Meat dishes"
+              class="subFilterHeader"
+            >
+              Kötträtter
             </h2>
 
             <div class="filterSelect">
@@ -75,23 +91,23 @@
                 type="checkbox"
                 id="chicken"
                 name="chicken"
-                value="Chicken" 
+                value="Chicken"
                 class="filterInput"
               />
             </div>
             <div class="filterSelect">
-              <label 
-                data-se="Fläsk" 
-                data-en="Pork" 
+              <label
+                data-se="Fläsk"
+                data-en="Pork"
                 for="pork"
                 class="filterLabel"
                 >Fläsk</label
               >
-                <input
+              <input
                 data-index="2"
-                type="checkbox" 
-                id="pork" 
-                name="pork" 
+                type="checkbox"
+                id="pork"
+                name="pork"
                 value="Pork"
                 class="filterInput"
               />
@@ -114,18 +130,18 @@
               />
             </div>
             <div class="filterSelect">
-              <label 
-                data-se="Fisk" 
-                data-en="Fish" 
+              <label
+                data-se="Fisk"
+                data-en="Fish"
                 for="fish"
                 class="filterLabel"
                 >Fisk</label
               >
-                <input
+              <input
                 data-index="4"
-                type="checkbox" 
+                type="checkbox"
                 id="fish"
-                name="fish" 
+                name="fish"
                 value="Fish"
                 class="filterInput"
               />
@@ -184,11 +200,7 @@
             </h2>
             <select name="priceSort" id="priceSort">
               <option value="standard">Standard</option>
-              <option
-                data-se="Stigande"
-                data-en="Ascending"
-                value="ascending"
-              >
+              <option data-se="Stigande" data-en="Ascending" value="ascending">
                 Stigande
               </option>
               <option
@@ -203,7 +215,12 @@
         </div>
 
         <!-- Order List -->
-        <button data-se="Beställning" data-en="Your order" id="orderButton" class="button">
+        <button
+          data-se="Beställning"
+          data-en="Your order"
+          id="orderButton"
+          class="button"
+        >
           Beställning
         </button>
 
@@ -215,9 +232,7 @@
           <div id="orderSummary"></div>
 
           <!-- Button to pay but without funktion -->
-          <button data-se="Beställ" data-en="Order" id="order">
-            Beställ
-          </button>
+          <button data-se="Beställ" data-en="Order" id="order">Beställ</button>
         </div>
       </div>
     </section>
