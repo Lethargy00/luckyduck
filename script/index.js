@@ -121,6 +121,8 @@ $(document).ready(function () {
     }
 
     // Display the filtered menu items
+
+    labelBackgroundColour();
     displayFoods(filteredMenu);
   };
 
@@ -321,8 +323,8 @@ $(document).ready(function () {
 
 
 
-  //Changes background of filer labels
-  $('input[type="checkbox"]').on('change', function () {
+  //Changes background of filer labels 
+  function labelBackgroundColour() {
     const checkboxes = $('input[type="checkbox"]:checked');
     const filterSelect = $('.filterSelect');
 
@@ -333,7 +335,7 @@ $(document).ready(function () {
       filterSelect.eq(index).css('background-color', '#ffa94d');
     });
 
-  });
+  };
 
 
   function ShowOrder() {

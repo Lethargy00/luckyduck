@@ -1,6 +1,6 @@
 [
   {
-    "seName": "Fläskfileplanka",
+    "seName": "Fläskfiléplanka",
     "enName": "Pork Tenderloin Plank Steak",
     "price": [
       149
@@ -205,7 +205,7 @@
     "img": "../pictures/food/mussels.jpg"
   },
   {
-    "seName": "Grillad Oxfile",
+    "seName": "Grillad Oxfilé",
     "enName": "Grilled Beef Tenderloin",
     "price": [
       259
