@@ -9,15 +9,6 @@ $(document).ready(function () {
   const checkFish = document.querySelector("input[name=fish]");
   const languageSelect = document.querySelectorAll("input[name=language]");
   const priceSort = document.querySelector("#priceSort");
-  const optionStandard = document.querySelector(
-    "#priceSort option[value='standard']"
-  );
-  const optionAscending = document.querySelector(
-    "#priceSort option[value='ascending']"
-  );
-  const optionDescending = document.querySelector(
-    "#priceSort option[value='descending']"
-  );
   const orderList = document.querySelector(".orderList");
   const orderSummary = document.querySelector(".orderSummary");
 
@@ -78,40 +69,45 @@ $(document).ready(function () {
   }
   getMenu();
 
+  // Filters the food items based on checkboxes ticked
   const filterFoods = function () {
-    // Filters the food items based on checkboxes ticked
 
-    filteredMenu = [...menu]; // Reset the filteredMenu to the original menu data
+    let filteredMenu = [...menu]; // Reset the filteredMenu to the original menu data
 
     const filteredMeats = [];
+    const checkBoxes = [
+      checkBeef,
+      checkPork,
+      checkChicken,
+      checkFish,
+    ];
 
-    if (checkGlutenFree.checked) {
-      filteredMenu = filteredMenu.filter((food) => food.isGlutenFree);
-    }
-    if (checkLactoseFree.checked) {
-      filteredMenu = filteredMenu.filter((food) => food.isLactoseFree);
-    }
-    if (checkVegetarian.checked) {
-      checkBeef.checked = false;
-      checkPork.checked = false;
-      checkChicken.checked = false;
-      checkFish.checked = false;
-      filteredMenu = filteredMenu.filter((food) => food.isVegetarian);
-    }
-    if (checkBeef.checked) {
-      filteredMeats.push("Beef");
-    }
-
-    if (checkPork.checked) {
-      filteredMeats.push("Pork");
-    }
-
-    if (checkChicken.checked) {
-      filteredMeats.push("Chicken");
-    }
-
-    if (checkFish.checked) {
-      filteredMeats.push("Fish");
+    if (!checkVegetarian.checked) {
+      checkBoxes.forEach((checkBox) => {
+        if (checkBox.checked) {
+          filteredMeats.push(checkBox.value);
+        }
+        if (checkGlutenFree.checked) {
+          filteredMenu = filteredMenu.filter((food) => food.isGlutenFree);
+        }
+        if (checkLactoseFree.checked) {
+          filteredMenu = filteredMenu.filter((food) => food.isLactoseFree);
+        }
+      });
+    } else {
+      if (checkVegetarian.checked) {
+        checkBeef.checked = false;
+        checkPork.checked = false;
+        checkChicken.checked = false;
+        checkFish.checked = false;
+        filteredMenu = filteredMenu.filter((food) => food.isVegetarian);
+      }
+      if (checkGlutenFree.checked) {
+        filteredMenu = filteredMenu.filter((food) => food.isGlutenFree);
+      }
+      if (checkLactoseFree.checked) {
+        filteredMenu = filteredMenu.filter((food) => food.isLactoseFree);
+      }
     }
 
     if (filteredMeats.length > 0) {
@@ -120,9 +116,9 @@ $(document).ready(function () {
       });
     }
 
-    // Display the filtered menu items
-
     labelBackgroundColour();
+
+    // Display the filtered menu items
     displayFoods(filteredMenu);
   };
 
@@ -277,8 +273,6 @@ $(document).ready(function () {
     updateOrderList();
   }
 
-
-
   // jQuery code
 
   // Automatic year updating in the variable currentYear
@@ -318,10 +312,6 @@ $(document).ready(function () {
 
   // Makes order visible
   $("#orderTitle").click(ShowOrder);
-
-
-
-
 
   //Changes background of filer labels 
   function labelBackgroundColour() {
@@ -374,9 +364,6 @@ $(document).ready(function () {
   // Changes the value of sorting and calls the filter to update the list of foods
   priceSort.addEventListener("change", function () {
     selectedSort = priceSort.value;
-    console.log(selectedSort);
     filterFoods();
   });
-
-
 });
