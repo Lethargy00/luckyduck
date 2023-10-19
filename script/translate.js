@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-  console.log(appletree);
-
   //Översätter till svenska
   function changeLanguage(language) {
     const elementsToTranslate = document.querySelectorAll(
@@ -35,13 +33,9 @@ $(document).ready(function () {
     if (selectedLanguage === "sv") {
       //Kontrollerar om valt språk är svenska eller om inget språk är valt och kör då koden inuti if
       swedishRadio.checked = true;
-      language = "sv";
-
     } else if (selectedLanguage === "en") {
       //Om det valda språket är engelska körs koden nedan
       englishRadio.checked = true;
-      language = "en";
-
     }
     changeLanguage(selectedLanguage);
   }

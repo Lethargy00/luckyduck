@@ -264,7 +264,7 @@ $(document).ready(function () {
     orderSummary.insertAdjacentHTML("beforeend", html);
   }
 
-  localStorage.getItem("selectedLanguage") === "en" ? "sv" : "en";
+  localStorage.getItem("selectedLanguage") === "sv" ? "sv" : "en";
 
   if (localStorage.getItem("basket")) {
     basket = JSON.parse(localStorage.getItem("basket"));
