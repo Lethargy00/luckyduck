@@ -18,7 +18,7 @@ body {
   position: relative;
   background-color: #FAF4EA;
   gap: 10px;
-  grid-template-columns: 23ch 80ch;
+  grid-template-columns: 25ch 80ch;
   grid-template-rows: 18ch 1fr 2ch;
 }
 
@@ -49,24 +49,23 @@ header::before {
   z-index: -1;
 }
 
-.header {
+#header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 100%;
   width: 100%;
   border-bottom: #ffa94d solid 4px;
   backdrop-filter: blur(5px) brightness(50%);
 }
 
-.header>h1 {
+#header>h1 {
   font-size: 60px;
   color: #ffa94d;
   font-family: 'Marck Script', cursive;
 }
 
-.header img {
+#header img {
   position: absolute;
   left: 0;
   margin-left: 5px;
@@ -74,14 +73,14 @@ header::before {
 }
 
 /* Menu */
-.menuBox {
+#menu {
   display: flex;
   gap: 5px;
   flex-direction: column;
   justify-content: center;
 }
 
-.menuBox>button {
+.button {
   border: 0;
   height: 50px;
   letter-spacing: 4px;
@@ -91,13 +90,13 @@ header::before {
   border-radius: 10px;
 }
 
-#filterContainer>div {
+.filter {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#filterContainer>div h2 {
+.subFilterHeader {
   background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=ffa94d);
   margin: -2px -6px;
   padding: 2px 6px;
@@ -107,7 +106,7 @@ header::before {
   background-size: 100% 100%;
 }
 
-#filterContainer>div input {
+.filterInput {
   display: none;
 }
 
@@ -115,7 +114,7 @@ header::before {
   cursor: pointer;
 }
 
-.orderList {
+#orderList {
   max-height: 200px;
   overflow-y: auto;
   border-bottom: #ffa94d solid 4px;
@@ -206,7 +205,7 @@ li {
 }
 
 /* Main Content */
-#mainFood {
+#main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -230,7 +229,7 @@ li {
 }
 
 .addToBasket,
-#orderButton {
+#order {
   text-align: center;
   border: none;
   letter-spacing: 1px;
@@ -241,7 +240,7 @@ li {
 }
 
 .addToBasket:hover,
-#orderButton:hover {
+#order:hover {
   background-color: #ffc384;
   cursor: pointer;
 }
@@ -303,7 +302,7 @@ footer {
 
 
 
-@media(max-width: 940px) {
+@media(max-width: 960px) {
 
   body {
     display: flex;
@@ -317,11 +316,11 @@ footer {
     width: 100%;
   }
 
-  .header>h1 {
+  #header>h1 {
     font-size: 7vw;
   }
 
-  .header img {
+  #header img {
     height: 11vw;
   }
 
@@ -345,16 +344,16 @@ footer {
     overflow-y: visible;
   }
 
-  .menuBox {
+  #menu {
     margin-top: 17vw;
   }
 
-  .menuBox>button {
+  .button {
     width: 90%;
     margin: 0 auto;
   }
 
-  #mainFood {
+  #main {
     justify-content: center;
     overflow-y: hidden;
     max-height: fit-content;

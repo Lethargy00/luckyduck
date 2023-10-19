@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const foodDiv = document.querySelector("#mainFood");
+  const foodDiv = document.querySelector("#main");
   const checkGlutenFree = document.querySelector("input[name=glutenFree]");
   const checkLactoseFree = document.querySelector("input[name=lactoseFree]");
   const checkVegetarian = document.querySelector("input[name=vegetarian]");
@@ -9,8 +9,8 @@ $(document).ready(function () {
   const checkFish = document.querySelector("input[name=fish]");
   const languageSelect = document.querySelectorAll("input[name=language]");
   const priceSort = document.querySelector("#priceSort");
-  const orderList = document.querySelector(".orderList");
-  const orderSummary = document.querySelector(".orderSummary");
+  const orderList = document.querySelector("#orderList");
+  const orderSummary = document.querySelector("#orderSummary");
 
   // SVG for portion sizes
   const smallPortionSvg =
@@ -302,7 +302,7 @@ $(document).ready(function () {
   });
 
   // Toggle Filters
-  $("#mainFilters").click(function () {
+  $("#filterButton").click(function () {
     $("#mainLanguage").removeClass("show");
 
     $("#filterContainer").toggleClass("show");
@@ -311,7 +311,7 @@ $(document).ready(function () {
   });
 
   // Makes order visible
-  $("#orderTitle").click(ShowOrder);
+  $("#orderButton").click(ShowOrder);
 
   //Changes background of filer labels 
   function labelBackgroundColour() {
