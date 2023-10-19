@@ -35,8 +35,9 @@ body {
 }
 
 /* Header */
-header {
+header{
   position: relative;
+  z-index:2;
 }
 
 header::before {
@@ -92,6 +93,7 @@ header::before {
   font-weight: 500;
   background-color: #ffa94d;
   border-radius: 10px;
+  cursor:pointer;
 }
 
 .filter {

@@ -17,7 +17,7 @@
       0
     ],
     "quantity": 0,
-    "img": "../pictures/food/Pork.jpeg"
+    "img": "./pictures/food/Pork.jpeg"
   },
   {
     "seName": "Biff Rydberg",
@@ -57,7 +57,7 @@
       2
     ],
     "quantity": 0,
-    "img": "../pictures/food/CheeseBurger.png"
+    "img": "./pictures/food/CheeseBurger.png"
   },
   {
     "seName": "Halloumi Burgare",
@@ -77,7 +77,7 @@
       3
     ],
     "quantity": 0,
-    "img": "../pictures/food/Halloumi.jpg"
+    "img": "./pictures/food/Halloumi.jpg"
   },
   {
     "seName": "Fish'n Chips",
@@ -97,7 +97,7 @@
       4
     ],
     "quantity": 0,
-    "img": "../pictures/food/fishchips.jpg"
+    "img": "./pictures/food/fishchips.jpg"
   },
   {
     "seName": "Husets Schnitzel",
@@ -117,7 +117,7 @@
       5
     ],
     "quantity": 0,
-    "img": "../pictures/food/schnitzel.jpg"
+    "img": "./pictures/food/schnitzel.jpg"
   },
   {
     "seName": "Caesarsallad",
@@ -140,7 +140,7 @@
       7
     ],
     "quantity": 0,
-    "img": "../pictures/food/Caesar.jpg"
+    "img": "./pictures/food/Caesar.jpg"
   },
   {
     "seName": "Laxsallad med Quinoa",
@@ -160,7 +160,7 @@
       8
     ],
     "quantity": 0,
-    "img": "../pictures/food/quinoa.jpeg"
+    "img": "./pictures/food/quinoa.jpeg"
   },
   {
     "seName": "Krämig Kycklingpasta",
@@ -177,10 +177,10 @@
     "seDescription": "Soltorkade tomater, basilika, grönsaker och parmesan",
     "enDescription": "Sundried tomatoes, basil, vegetables and parmesan",
     "id": [
-      0
+      12
     ],
     "quantity": 0,
-    "img": "../pictures/food/Chicken.jpg"
+    "img": "./pictures/food/Chicken.jpg"
   },
   {
     "seName": "Musslor Cava",
@@ -202,7 +202,7 @@
       10
     ],
     "quantity": 0,
-    "img": "../pictures/food/mussels.jpg"
+    "img": "./pictures/food/mussels.jpg"
   },
   {
     "seName": "Grillad Oxfilé",
@@ -222,6 +222,6 @@
       11
     ],
     "quantity": 0,
-    "img": "../pictures/food/beef.jpg"
+    "img": "./pictures/food/beef.jpg"
   }
 ]
