@@ -35,7 +35,7 @@ body {
 }
 
 /* Header */
-header{
+header {
   position: relative;
 }
 
@@ -64,7 +64,7 @@ header::before {
 
 #header>h1 {
   font-size: 6vh;
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 2px 2px 5px black;
   color: #ffa94d;
   font-family: 'Marck Script', cursive;
 }
@@ -92,7 +92,7 @@ header::before {
   font-weight: 500;
   background-color: #ffa94d;
   border-radius: 10px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .filter {
@@ -115,7 +115,13 @@ header::before {
   display: none;
 }
 
-.filterLabel {
+.filterLabel:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   cursor: pointer;
 }
 
@@ -130,7 +136,6 @@ header::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .languageBox,
@@ -147,6 +152,8 @@ header::before {
 
 .filterSelect {
   grid-template-columns: 1fr;
+  position: relative;
+  height: 16px;
 }
 
 .languageBox:hover {
@@ -163,11 +170,13 @@ header::before {
   display: grid;
   grid-template-columns: 1fr 16px;
   width: 90%;
+  font-size: 14px;
   margin-bottom: 5px;
   padding: 5px;
   border: #ffa94d solid 2px;
   border-radius: 10px;
   background-color: white;
+  cursor: pointer;
 }
 
 input[type='radio'] {

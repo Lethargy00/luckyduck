@@ -19,10 +19,12 @@ $(document).ready(function () {
     '<svg class="portionIcon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z"/></svg>';
 
   //Setting default values
-  let language = "sv";
+  let language = localStorage.getItem("selectedLanguage") === "sv" || null ? "sv" : "en";
   let selectedSort = "standard";
   let menu = [];
   let basket = [];
+
+
 
   // This displays the foods by inserting HTML to the index.html
   const displayFoods = function (foods) {
@@ -206,11 +208,9 @@ $(document).ready(function () {
       .filter((item) => item.quantity > 0) // Quantity must be greater than 0
       .forEach((item, i) => {
         const name = item.menuItem[lang];
-        const html = `<li class="basketItem item${i}"> <span class="foodName">${name}</span>  <span class="foodPortion">${
-          item.portion
-        }</span></br> <button class="basketQuantity increaseQuantity" id="${
-          item.id
-        }"><svg
+        const html = `<li class="basketItem item${i}"> <span class="foodName">${name}</span>  <span class="foodPortion">${item.portion
+          }</span></br> <button class="basketQuantity increaseQuantity" id="${item.id
+          }"><svg
       class="basketQuantitySvg increaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -224,9 +224,8 @@ $(document).ready(function () {
         stroke-linejoin="round"
         d="M4.5 15.75l7.5-7.5 7.5 7.5"
       />
-    </svg></button> ${
-      item.quantity
-    } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
+    </svg></button> ${item.quantity
+          } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
       class="basketQuantitySvg decreaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -240,9 +239,8 @@ $(document).ready(function () {
         stroke-linejoin="round"
         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
       />
-    </svg></button> <span class="foodPrice">${
-      item.price * item.quantity
-    }</span> kr</li>`;
+    </svg></button> <span class="foodPrice">${item.price * item.quantity
+          }</span> kr</li>`;
         orderList.insertAdjacentHTML("beforeend", html);
       });
     updateOrderSummary();
@@ -260,7 +258,7 @@ $(document).ready(function () {
     orderSummary.insertAdjacentHTML("beforeend", html);
   }
 
-  localStorage.getItem("selectedLanguage") === "sv" ? "sv" : "en";
+
 
   if (localStorage.getItem("basket")) {
     basket = JSON.parse(localStorage.getItem("basket"));
