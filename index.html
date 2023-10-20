@@ -179,10 +179,12 @@
               data-se="Pris sortering"
               data-en="Price sorting"
               class="subFilterHeader"
+              id="priceSortLabel"
+              aria-hidden="true"           
             >
               Pris sortering
-            </h2>
-            <select name="priceSort" id="priceSort">
+          </h2>        
+            <select name="priceSort" id="priceSort" aria-labelledby="priceSortLabel">
               <option value="standard">Standard</option>
               <option
                 data-se="Stigande"
