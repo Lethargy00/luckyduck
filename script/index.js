@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   const foodDiv = document.querySelector("#main");
   const checkGlutenFree = document.querySelector("input[name=glutenFree]");
   const checkLactoseFree = document.querySelector("input[name=lactoseFree]");
@@ -29,7 +28,8 @@ $(document).ready(function () {
   const displayFoods = function (foods) {
     foodDiv.innerHTML = "";
     const nameLanguage = language === "sv" ? "seName" : "enName";
-    const descriptionLanguage = language === "sv" ? "seDescription" : "enDescription";
+    const descriptionLanguage =
+      language === "sv" ? "seDescription" : "enDescription";
     const orderLanguage = language === "sv" ? "Beställ" : "Order";
 
     const sortedFoods = sortFoodByPrice(foods);
@@ -41,7 +41,7 @@ $(document).ready(function () {
       } else {
         priceHtml = `<div class="food-price">${largePortionSvg} ${food.price[0]} kr <button class="addToBasket" id="id${food.id[0]}">${orderLanguage}</button></div>`;
       }
-      const html = `<div class="food-cards"><img class="food-img" src="${food.img}" alt="Food Image"><p class="food-title">${food[nameLanguage]}</p>
+      const html = `<div class="food-cards"><img class="food-img" src="${food.img}" alt=""><p class="food-title">${food[nameLanguage]}</p>
     ${priceHtml}<div><p class="food-description">${food[descriptionLanguage]}</p></div></div>`;
 
       foodDiv.insertAdjacentHTML("beforeend", html);
@@ -71,16 +71,10 @@ $(document).ready(function () {
 
   // Filters the food items based on checkboxes ticked
   const filterFoods = function () {
-
     let filteredMenu = [...menu]; // Reset the filteredMenu to the original menu data
 
     const filteredMeats = [];
-    const checkBoxes = [
-      checkBeef,
-      checkPork,
-      checkChicken,
-      checkFish,
-    ];
+    const checkBoxes = [checkBeef, checkPork, checkChicken, checkFish];
 
     if (!checkVegetarian.checked) {
       checkBoxes.forEach((checkBox) => {
@@ -139,8 +133,6 @@ $(document).ready(function () {
     if (target.classList.contains("addToBasket")) {
       const foodContainer = target.closest("div"); // Selects the div containing the food
 
-
-
       if (foodContainer) {
         // Extract the unique ID from the clicked button's class
         const buttonIds = target.id.split(" ");
@@ -173,7 +165,6 @@ $(document).ready(function () {
           }
         }
       }
-
     }
     updateOrderList();
     ShowOrder();
@@ -215,8 +206,11 @@ $(document).ready(function () {
       .filter((item) => item.quantity > 0) // Quantity must be greater than 0
       .forEach((item, i) => {
         const name = item.menuItem[lang];
-        const html = `<li class="basketItem item${i}"> <span class="foodName">${name}</span>  <span class="foodPortion">${item.portion}</span></br> <button class="basketQuantity increaseQuantity" id="${item.id
-          }"><svg
+        const html = `<li class="basketItem item${i}"> <span class="foodName">${name}</span>  <span class="foodPortion">${
+          item.portion
+        }</span></br> <button class="basketQuantity increaseQuantity" id="${
+          item.id
+        }"><svg
       class="basketQuantitySvg increaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -230,8 +224,9 @@ $(document).ready(function () {
         stroke-linejoin="round"
         d="M4.5 15.75l7.5-7.5 7.5 7.5"
       />
-    </svg></button> ${item.quantity
-          } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
+    </svg></button> ${
+      item.quantity
+    } <button class="basketQuantity decreaseQuantity" id="${item.id}"><svg
       class="basketQuantitySvg decreaseQuantitySvg"
       
       xmlns="http://www.w3.org/2000/svg"
@@ -245,8 +240,9 @@ $(document).ready(function () {
         stroke-linejoin="round"
         d="M19.5 8.25l-7.5 7.5-7.5-7.5"
       />
-    </svg></button> <span class="foodPrice">${item.price * item.quantity
-          }</span> kr</li>`;
+    </svg></button> <span class="foodPrice">${
+      item.price * item.quantity
+    }</span> kr</li>`;
         orderList.insertAdjacentHTML("beforeend", html);
       });
     updateOrderSummary();
@@ -276,7 +272,6 @@ $(document).ready(function () {
   // Automatic year updating in the variable currentYear
   var currentYear = new Date().getFullYear();
   $("#currentYear").text(currentYear);
-
 
   // If filter and language isn't open, show orderContainer
   function toggleContainers() {
@@ -311,20 +306,18 @@ $(document).ready(function () {
   // Makes order visible
   $("#orderButton").click(ShowOrder);
 
-  //Changes background of filer labels 
+  //Changes background of filer labels
   function labelBackgroundColour() {
     const checkboxes = $('input[type="checkbox"]:checked');
-    const filterSelect = $('.filterSelect');
+    const filterSelect = $(".filterSelect");
 
-    filterSelect.css('background-color', 'white');
+    filterSelect.css("background-color", "white");
 
     checkboxes.each(function () {
-      const index = $(this).data('index');
-      filterSelect.eq(index).css('background-color', '#ffa94d');
+      const index = $(this).data("index");
+      filterSelect.eq(index).css("background-color", "#ffa94d");
     });
-
-  };
-
+  }
 
   function ShowOrder() {
     $("#mainLanguage").removeClass("show");
@@ -334,7 +327,7 @@ $(document).ready(function () {
     $("#orderContainer").removeClass("hide");
 
     toggleContainers();
-  };
+  }
   // jQuery code
 
   // Event listeners - calls filterFoods to update the list of foods -------------------------------------------
