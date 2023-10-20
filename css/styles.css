@@ -41,7 +41,7 @@ header {
 
 header::before {
   content: "";
-  background-image: url(../pictures/egg.jpeg);
+  background-image: url(../pictures/egg.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
