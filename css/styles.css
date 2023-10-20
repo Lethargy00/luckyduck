@@ -29,7 +29,7 @@ body {
   height: 100%;
   grid-gap: 10px;
   grid-template-columns: 25ch 80ch;
-  grid-template-rows: 18vh 77.87vh 2vh;
+  grid-template-rows: 150px 77.87vh 2vh;
 }
 
 #headerContainer,
@@ -72,7 +72,8 @@ header::before {
 }
 
 #header>h1 {
-  font-size: 6vh;
+  font-size: 50px;
+
   text-shadow: 2px 2px 5px black;
   color: #ffa94d;
   font-family: 'Marck Script', cursive;
@@ -82,7 +83,7 @@ header::before {
   position: absolute;
   left: 0;
   margin-left: 5px;
-  height: 17vh;
+  height: 140px;
 }
 
 /* Menu */
@@ -290,6 +291,10 @@ li {
   padding: 0 4px;
 }
 
+.food-title {
+  font-weight: 700;
+}
+
 .food-price {
   display: flex;
   justify-content: center;
@@ -331,7 +336,7 @@ footer {
 
 
 
-@media(max-width: 960px) {
+@media(orientation: portrait), (max-width: 960px) {
 
   body {
     display: flex;
