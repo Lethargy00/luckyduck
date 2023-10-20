@@ -21,24 +21,28 @@
       <div id="menu">
         <!-- Language Selector -->
         <button
-          data-se="Språk"
-          data-en="Language"
-          id="languageButton"
-          class="button"
-        >
-        </button>
-        <div id="mainLanguage">
-          <div>
-            <div class="languageBox">
-              <label for="swedish" id="labelSwedish">Svenska</label>
-              <input type="radio" id="swedish" name="language" checked />
-            </div>
-            <div class="languageBox">
-              <label for="english" id="labelEnglish">English</label>
-              <input type="radio" id="english" name="language" value="en" />
+        data-se="Språk"
+        data-en="Language"
+        id="languageButton"
+        class="button"
+        aria-label="Change language"
+      >
+      </button>
+        <fieldset>
+          <legend>Select Language</legend>
+          <div id="mainLanguage">
+            <div>
+              <div class="languageBox">
+                <label for="swedish" id="labelSwedish">Svenska</label>
+                <input type="radio" id="swedish" name="language" checked />
+              </div>
+              <div class="languageBox">
+                <label for="english" id="labelEnglish">English</label>
+                <input type="radio" id="english" name="language" value="en" />
+              </div>
             </div>
           </div>
-        </div>
+        </fieldset>
 
         <!-- Filtering option -->
         <button
